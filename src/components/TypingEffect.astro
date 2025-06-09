@@ -8,10 +8,10 @@ interface Props {
   typingSpeed?: number;    // Typing speed modifier (higher = faster)
 }
 
-const { 
-  command, 
-  initialDelay = 300, 
-  typingSpeed = 10 
+const {
+  command,
+  initialDelay = 300,
+  typingSpeed = 10
 } = Astro.props;
 
 // Calculate total duration based on command length
@@ -20,7 +20,7 @@ const typingDuration = (command.length / typingSpeed) * 1000; // in milliseconds
 
 <div class="typing-container">
   <p class="command-prompt">
-    [hquinn@HenryNeeds ~]$ <span class="typed"></span>
+    [Guest@HenryNeeds ~]$ <span class="typed"></span>
   </p>
   <div class="content-container">
     <slot />
@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = document.querySelector('.content-container');
   let charIndex = 0;
   const commandText = command;
-  
+
   // Hide content initially but maintain layout
   if (content) {
     content.classList.add('hidden-content');
   }
-  
+
   // Type characters one by one with slight randomization
   function typeNextChar() {
     if (charIndex < commandText.length) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cursor = document.createElement('span');
       cursor.classList.add('cursor');
       typed.appendChild(cursor);
-      
+
       // Show content with a more noticeable delay after typing completes
       setTimeout(() => {
         if (content) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400); // Increased from 100ms to 400ms
     }
   }
-  
+
   // Start typing after a brief delay
   setTimeout(() => {
     typeNextChar();
@@ -84,18 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
     color: var(--color-text);
     position: relative;
   }
-  
+
   /* Style for terminal content */
   .content-container {
     min-height: 200px; /* Prevent layout shifts */
   }
-  
+
   /* Hide content initially but preserve layout */
   .hidden-content {
     visibility: hidden;
     height: auto;
   }
-  
+
   /* Cursor styling uses global styles from global.css */
   .cursor {
     margin-left: var(--space-xs);

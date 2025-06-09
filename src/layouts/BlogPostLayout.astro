@@ -26,7 +26,7 @@ const formattedDate = formatDate(date);
       <br /><br />
       <NavBar activeNav="blog" />
       <CommandPrompt prompt={`cat blog/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
-      
+
       <article class="blog-post">
         <header>
           <h1>{title}</h1>
@@ -67,7 +67,7 @@ const formattedDate = formatDate(date);
   .blog-post h1 {
     font-size: var(--font-size-3xl);
     margin-bottom: var(--space-sm);
-    color: var(--color-primary);
+    color: var(--text-color);
   }
 
   .metadata {
@@ -96,7 +96,7 @@ const formattedDate = formatDate(date);
 
   .content :global(h2) {
     margin-top: var(--space-xl);
-    color: var(--color-primary);
+    color: var(--text-color);
   }
 
   .content :global(img) {
