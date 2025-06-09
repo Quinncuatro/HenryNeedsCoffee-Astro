@@ -1,0 +1,336 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+// This would typically come from a content collection in Astro
+// For now, let's use detailed resume data from henryneeds.coffee
+const resumeData = {
+  jobs: [
+    {
+      employer: "TED Conferences",
+      position: "Senior DevOps Engineer",
+      time: "May 2024 - Present",
+      details: "",
+      technologies: "Ansible, AWS (Aurora, EC2, ECS, IAM, SSM), Bash, Docker, Python, Ruby"
+    },
+    {
+      employer: "Acuity Brands Lighting",
+      position: "Senior Application Developer",
+      time: "September 2021 - August 2023",
+      details: "Automated access group processes, drafted secret expiration policies, productionized in-house solution for monitoring client secret expirations, selected C4 modeling framework for technical documentation, and planned the company's first internal hackathon focused on Temporal workflow engine.",
+      technologies: "Python, PowerShell, Azure Pipelines, Kubernetes, ArgoCD, MS Graph, SendGrid"
+    },
+    {
+      employer: "Clarity Software Solutions",
+      position: "DevOps Engineer",
+      time: "May 2019 - August 2021",
+      details: "Built data extraction pipeline from Datadog for business intelligence, managed container-based infrastructure, built language-agnostic toolchain with AWS Lambda, automated PHI scrubbing process (resulting in ~95% time savings or ~7.5 man-hours), automated code package preparation for daily builds (resulting in ~85% time savings or ~2.5 man-hours), and built SQL script verification tool.",
+      technologies: "NodeJS, Docker, Kubernetes, Datadog, MariaDB, Bash, GitHub"
+    },
+    {
+      employer: "NewHaven.IO",
+      position: "President, Board of Directors",
+      time: "November 2018 - Present",
+      details: "Organizing networking events for the tech community, partnering with local tech organizations, and managing website development team.",
+      volunteer: true
+    },
+    {
+      employer: "Administrative Office of US Courts",
+      position: "Software Developer - Temporary Duty Assignment",
+      time: "August 2018 - April 2019",
+      details: "Transitioned the Judicial Dashboard to work on an on-premise OpenShift/GlusterFS solution, cutting the deployment time down by 99.17%. Created, maintained, and provided enhancements to the codebase for a web application that automates the daily 'getting up to speed' work for District Judges across the country, saving roughly an hour's worth of time per judge every morning. Collaborated with a remote team of engineers in D.C. to test the scalability of OpenShift for use by other judiciary development teams.",
+      technologies: "OpenShift, Docker, Kubernetes"
+    },
+    {
+      employer: "United States District Court, District of Connecticut",
+      position: "Programmer",
+      time: "March 2017 - April 2019",
+      details: "Transitioned legacy applications to containerized architectures, modernized technology stack, implemented iPad jury information gathering system (92.5% process reduction), and developed touchscreen jury sign-in kiosk (85% cost reduction).",
+      technologies: "Docker, Vue.js, Node, Webpack, Ruby on Rails"
+    },
+    {
+      employer: "LearnToProgram.TV",
+      position: "Developer in Residence / Instructor",
+      time: "June 2017 - August 2018",
+      details: "Kept up with the bleeding edge of web technology to help set technical direction for LTP's courses and library. Developed an eLearning course on 'Intro to Server Administration', wrote magazine article 'The Future Is Docker', and instructed in the Framework Web Development Bootcamp.",
+      technologies: "JavaScript, Node.js, Ruby on Rails, Docker"
+    },
+    {
+      employer: "United States District Court, District of Connecticut",
+      position: "Programmer/Analyst",
+      time: "May 2015 - March 2017",
+      details: "Created full stack LAMP and Ruby on Rails web applications to automate workflows for HR and Operations. Communications involved in on and off boarding employees was cut by over 40% due to streamlining the process by which system access privileges are requisitioned and assigned. Managed Red Hat servers running IBM Informix and US District Court CM/ECF instances and prepared for district's early adopter NextGen CM/ECF upgrade. Crafted complex, multi-table queries to generate reports that allowed Magistrate and District Judges on the CM/ECF Committee to decide which nature of suit case types needed to be optimized to abide by the Speedy Trial Clause.",
+      technologies: "PHP, Ruby on Rails, JavaScript, IBM Informix, Red Hat"
+    }
+  ],
+  projects: [
+    {
+      name: "Henry Gives Coffee",
+      year: "2021",
+      description: "Web project rewarding creative folks for their work with a cup of coffee each month. Features a blog for longer-form posts and portfolio showcase for monthly winners.",
+      technologies: "GatsbyJS, NodeJS, GraphQL, Netlify",
+      github: "https://github.com/quinncuatro/henrygivescoffee"
+    },
+    {
+      name: "New Haven Relief Resources",
+      year: "2020",
+      description: "Web application providing COVID-19 aid information for New Haven residents. Built during the pandemic to help connect people with resources for food, housing assistance, unemployment benefits, and other essential services.",
+      technologies: "JavaScript, React, GatsbyJS, AirTable, Netlify",
+      github: "https://github.com/quinncuatro/newhavenreliefresources"
+    },
+    {
+      name: "DEVC Webpack Playground",
+      year: "2018",
+      description: "Containerized development environment experiment for mixing modern frontend tools with legacy codebases. Created to help modernize development workflows for legacy applications.",
+      technologies: "Vue.js, ColdFusion, Docker, Node, Webpack, MySQL",
+      github: "https://github.com/quinncuatro/devc-webpack"
+    },
+    {
+      name: "SLAter",
+      year: "2018",
+      description: "Raspberry Pi ticket monitoring system that tracks SLA compliance for IT service tickets. Built to provide visibility into support request timelines and team performance.",
+      technologies: "JavaScript, Node, MySQL",
+      github: "https://github.com/quinncuatro/slater"
+    },
+    {
+      name: "US Webtranet",
+      year: "2017",
+      description: "Containerized intranet framework for federal agencies that allows non-technical staff to contribute content through a simple interface. Designed to improve internal communications and knowledge sharing.",
+      technologies: "Ruby, Rails, SQLite, Docker",
+      github: "https://github.com/quinncuatro/us-webtranet"
+    },
+    {
+      name: "Digital Signage",
+      year: "2016",
+      description: "Custom digital signage solution for the US District Court using Raspberry Pi devices and web technologies, replacing expensive proprietary systems. This was also used to help cure a coworker's gout!",
+      technologies: "JavaScript, HTML5, Raspberry Pi",
+      github: "https://github.com/quinncuatro/DigitalSignage"
+    }
+  ],
+  education: [
+    {
+      degree: "Bachelor of Science",
+      field: "Computer Networking and Information Security",
+      specialization: "Cyber Security",
+      school: "Champlain College",
+      year: "2015",
+      achievements: [
+        "President of Champlain College Cycling Club",
+        "National Center of Academic Excellence in Information Assurance Education by the National Security Agency and the Department of Homeland Security"
+      ]
+    }
+  ]
+};
+---
+
+<TerminalLayout
+  title="Resume"
+  activeNav="resume"
+  commandPrompt="whoami"
+  typingSpeed={10}>
+      <h1>Henry Quinn IV</h1>
+      <h2>Automation Engineer</h2>
+
+      <h3>Work Experience:</h3>
+      <div class="resume-section">
+        {resumeData.jobs.map((job) => (
+          <div class="job-item">
+            <div class="job-header">
+              <h4>{job.position}</h4>
+              <span class="job-time">{job.time}</span>
+            </div>
+            <div class="job-employer">{job.employer}</div>
+            <p class="job-details">{job.details}</p>
+            {job.technologies && (
+              <div class="job-tech">Technologies: {job.technologies}</div>
+            )}
+            {job.volunteer && (
+              <div class="job-volunteer">Volunteer Position</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <hr />
+
+      <h3>Public Projects:</h3>
+      <div class="resume-section">
+        {resumeData.projects.map((project) => (
+          <div class="project-item">
+            <div class="project-header">
+              <h4>{project.name}</h4>
+              <span class="project-year">{project.year}</span>
+            </div>
+            <p class="project-description">{project.description}</p>
+            <div class="project-tech">Technologies: {project.technologies}</div>
+            <div class="project-links">
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" class="project-link">
+                  GitHub
+                </a>
+              )}
+              {project.dockerhub && (
+                <a href={project.dockerhub} target="_blank" rel="noopener noreferrer" class="project-link">
+                  Docker Hub
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <hr />
+
+      <h3>Education:</h3>
+      <div class="resume-section">
+        {resumeData.education.map((edu) => (
+          <div class="education-item">
+            <div class="education-header">
+              <h4>{edu.degree} in {edu.field}</h4>
+              <span class="education-year">{edu.year}</span>
+            </div>
+            <div class="education-school">{edu.school}</div>
+            {edu.specialization && <div class="education-spec">Specialization: {edu.specialization}</div>}
+            {edu.achievements && edu.achievements.length > 0 && (
+              <div class="achievements">
+                <h5>Achievements:</h5>
+                <ul>
+                  {edu.achievements.map((achievement) => (
+                    <li>{achievement}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+</TerminalLayout>
+<style>
+  h1, h2, h3, h4 {
+    margin-top: 0;
+    color: var(--accent-color);
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #fff
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--link-color);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 2rem 0;
+  }
+
+  .resume-section {
+    margin-bottom: 2rem;
+  }
+
+  .job-item, .project-item, .education-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #fff;
+  }
+
+  .job-item:last-child, .project-item:last-child, .education-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .job-header, .project-header, .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .job-time, .project-year, .education-year {
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  .job-employer, .education-school {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-details, .project-description {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .project-tech, .job-tech {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-volunteer {
+    display: inline-block;
+    background-color: #4A8522;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .education-spec {
+    color: #777;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievements h5 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+    font-size: 1rem;
+  }
+
+  .achievements ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .achievements li {
+    margin-bottom: 0.25rem;
+  }
+
+  .job-resources, .project-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .resource-link, .project-link {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .resource-link:hover, .project-link:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none;
+  }
+</style>

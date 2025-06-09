@@ -1,0 +1,103 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all digital garden posts
+// Note: You'll need to create a collection for digital garden posts
+// This assumes you have a 'garden' collection in your Astro content
+const gardenPosts = await getCollection('garden', ({ data }) => {
+  return true; // Filter as needed
+});
+
+// Sort posts by date (newest first)
+const sortedPosts = gardenPosts ? gardenPosts.sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+) : [];
+---
+
+<TerminalLayout
+  title="Digital Garden"
+  activeNav="digital-garden"
+  commandPrompt="./digital-garden.sh"
+  typingSpeed={8}>
+      <h1>Digital Garden</h1>
+      <p>"An online space at the intersection of a notebook and a blog, where digital gardeners share seeds of thoughts to be cultivated in public." - <a href="https://nesslabs.com/digital-garden-set-up" target="_blank" rel="noopener noreferrer">Anne-Laure Le Cunff</a></p>
+      <hr />
+
+      <div class="garden-posts">
+        {sortedPosts.length > 0 ? (
+          sortedPosts.map((post) => (
+            <article class="post-item">
+              <h2><a href={`/digital-garden/${post.slug}`}>{post.data.title}</a></h2>
+              <p class="post-date">{new Date(post.data.date).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              {post.data.category && (
+                <div class="post-category">{post.data.category}</div>
+              )}
+              <p class="post-excerpt">{post.data.desc || post.body.slice(0, 280)}</p>
+            </article>
+          ))
+        ) : (
+          <p class="empty-message">Seeds are being planted. Check back soon for growing thoughts!</p>
+        )}
+      </div>
+</TerminalLayout>
+<style>
+  .garden-posts {
+    margin-top: 30px;
+  }
+
+  .post-item {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .post-item h2 {
+    margin-bottom: 8px;
+  }
+
+  .post-item h2 a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  .post-item h2 a:hover {
+    color: var(--link-hover);
+    text-decoration: none;
+  }
+
+  .post-date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .post-category {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .post-excerpt {
+    line-height: 1.5;
+    color: var(--text-color);
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+
+  .empty-message {
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    color: #777;
+  }
+</style>

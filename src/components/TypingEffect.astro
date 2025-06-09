@@ -1,0 +1,116 @@
+---
+// TypingEffect.astro
+// Component for animating typing in a terminal-like interface
+
+interface Props {
+  command: string;
+  initialDelay?: number;   // Delay before typing starts (ms)
+  typingSpeed?: number;    // Typing speed modifier (higher = faster)
+}
+
+const { 
+  command, 
+  initialDelay = 300, 
+  typingSpeed = 10 
+} = Astro.props;
+
+// Calculate total duration based on command length
+const typingDuration = (command.length / typingSpeed) * 1000; // in milliseconds
+---
+
+<div class="typing-container">
+  <p class="command-prompt">
+    [hquinn@HenryNeeds ~]$ <span class="typed"></span>
+  </p>
+  <div class="content-container">
+    <slot />
+  </div>
+</div>
+
+<script define:vars={{ command }}>
+// Wait for the document to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  const typed = document.querySelector('.typed');
+  const content = document.querySelector('.content-container');
+  let charIndex = 0;
+  const commandText = command;
+  
+  // Hide content initially but maintain layout
+  if (content) {
+    content.classList.add('hidden-content');
+  }
+  
+  // Type characters one by one with slight randomization
+  function typeNextChar() {
+    if (charIndex < commandText.length) {
+      typed.textContent = typed.textContent + commandText.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeNextChar, Math.random() * 20 + 40); // 40-60ms per character with randomization
+    } else {
+      // After typing is complete, add block cursor
+      const cursor = document.createElement('span');
+      cursor.classList.add('cursor');
+      typed.appendChild(cursor);
+      
+      // Show content with a more noticeable delay after typing completes
+      setTimeout(() => {
+        if (content) {
+          content.classList.remove('hidden-content');
+        }
+      }, 400); // Increased from 100ms to 400ms
+    }
+  }
+  
+  // Start typing after a brief delay
+  setTimeout(() => {
+    typeNextChar();
+  }, 300);
+});
+</script>
+
+<style>
+  .typing-container {
+    width: 100%;
+  }
+
+  .command-prompt {
+    font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
+    margin-bottom: 2rem;
+    color: #ccc;
+    white-space: nowrap;
+  }
+
+  .typed {
+    color: var(--text-color, #fff);
+    position: relative;
+  }
+  
+  /* We're using the JS approach now - removed CSS typing animation */
+
+  /* Style for terminal content */
+  .content-container {
+    min-height: 200px; /* Prevent layout shifts */
+  }
+  
+  /* Hide content initially but preserve layout */
+  .hidden-content {
+    visibility: hidden;
+    height: auto;
+  }
+  
+  /* Cursor styling */
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background-color: var(--text-color, #fff);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

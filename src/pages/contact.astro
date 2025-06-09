@@ -1,0 +1,104 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+// Obfuscate email to avoid scrapers
+const myEmail = "HenryQuinnIV" + String.fromCharCode(64) + "gmail.com";
+---
+
+<TerminalLayout
+  title="Contact"
+  activeNav="contact"
+  commandPrompt="sendmail"
+  typingSpeed={10}>
+
+  <h1>Contact</h1>
+  <hr/>
+
+  <h2>Email</h2>
+  <a href={`mailto:${myEmail}`} class="contact-link">[ Email Me ]</a>
+
+  <h2>Social Media</h2>
+  <div class="social-links">
+    <a href="https://github.com/quinncuatro" target="_blank" rel="noopener noreferrer" class="contact-link">[ GitHub ]</a>
+    <a href="https://ko-fi.com/henryquinn" target="_blank" rel="noopener noreferrer" class="contact-link">[ Ko-fi ]</a>
+  </div>
+
+  <h2>Other Information</h2>
+  <p>I'm super open to being contacted for speaking at conferences, on panels, or as a guest on a podcast! I just ask that your organization be one that provides equal opportunities to members of the BIPOC and LGBTQIA+ communities.</p>
+
+  <p>Also please reach out if you'd like to collaborate on something!</p>
+
+  <p>I've always wanted to:</p>
+  <ul class="contact-list">
+    <li>Write a guest blog post</li>
+    <li>Have a guest write for my blog</li>
+    <li>Help write a book</li>
+    <li>Help organize a tech conference in New Haven</li>
+    <li>Help write a book</li>
+  </ul>
+
+</TerminalLayout>
+
+<style>
+  h1, h2 {
+    margin-top: 0;
+    color: var(--text-color);
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2rem 0;
+  }
+
+  p {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .contact-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .contact-link:hover {
+    background-color: var(--accent-color-dark);
+    text-decoration: none;
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-list {
+    margin-left: 2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+  }
+
+  .contact-list li {
+    margin-bottom: 0.5rem;
+  }
+</style>

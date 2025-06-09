@@ -1,0 +1,243 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  desc?: string;
+}
+
+const { title, date, desc } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Format current date for the terminal-style login prompt
+const now = new Date();
+const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+const zerosAreHard = (n) => {
+  return n < 10 ? "0" + n : n;
+};
+
+const day = days[now.getDay()];
+const month = months[now.getMonth()];
+const date_num = now.getDate();
+const hours = zerosAreHard(now.getHours());
+const minutes = zerosAreHard(now.getMinutes());
+const seconds = zerosAreHard(now.getSeconds());
+const year = now.getFullYear();
+
+const currentLoginPrompt = `Current login: ${day} ${month} ${date_num} ${hours}:${minutes}:${seconds} ${year}`;
+---
+
+<Layout title={title} description={desc || `Digital Garden: ${title}`}>
+  <Header />
+  <div class="terminal-window">
+    <div class="terminal-content">
+      <span class="login-prompt">{currentLoginPrompt}<br />
+      Welcome to HenryNeeds.Coffee!</span>
+      <br /><br />
+      <nav class="menu-bar">
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/digital-garden" class="active">Digital Garden</a>
+        <a href="/resume">Resume</a>
+        <a href="/talks-and-pods">Talks & Pods</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p class="command-prompt">[hquinn@HenryNeeds ~]$ <span class="typed">cat digital-garden/${title.toLowerCase().replace(/\s+/g, '-')}.md<span class="cursor"></span></span></p>
+
+      <article class="garden-post">
+        <header>
+          <h1>{title}</h1>
+          <div class="metadata">
+            <time datetime={date.toISOString()}>{formattedDate}</time>
+            <span class="garden-note">Digital Garden Entry</span>
+          </div>
+        </header>
+        <div class="content">
+          <slot />
+        </div>
+        <footer class="post-footer">
+          <p class="garden-explanation">
+            <strong>Note:</strong> This is a <a href="/digital-garden">Digital Garden</a> entry - a place for ideas to grow.
+            It may be updated or expanded over time as my thoughts evolve.
+          </p>
+          <div class="navigation">
+            <a href="/digital-garden" class="back-link">← Back to Garden</a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+  .terminal-window {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .terminal-content {
+    padding: 2rem;
+    color: var(--text-color);
+  }
+
+  .login-prompt {
+    color: #888;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+
+  .menu-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .menu-bar a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .menu-bar a:hover {
+    text-decoration: underline;
+  }
+
+  .menu-bar a.active {
+    color: var(--accent-color-dark);
+    font-weight: bold;
+  }
+
+  .command-prompt {
+    font-family: monospace;
+    margin-bottom: 2rem;
+  }
+
+  .typed {
+    color: var(--text-color);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    background-color: var(--accent-color);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .garden-post {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .garden-post header {
+    margin-bottom: 2rem;
+  }
+
+  .garden-post h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+  }
+
+  .metadata {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .garden-note {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--accent-color-light);
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .content {
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .content h2 {
+    margin-top: 2rem;
+    color: var(--accent-color);
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+
+  .garden-explanation {
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .navigation {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .back-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .back-link:hover {
+    background-color: var(--accent-color-dark);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .terminal-content {
+      padding: 1.5rem;
+    }
+
+    .menu-bar {
+      justify-content: center;
+    }
+
+    .garden-post h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  category?: string;
+  desc: string;
+}
+
+const { title, date, category, desc } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout title={title} description={desc}>
+  <Header />
+  <article class="blog-post">
+    <header>
+      <h1>{title}</h1>
+      <div class="metadata">
+        <time datetime={date.toISOString()}>{formattedDate}</time>
+        {category && <span class="category">{category}</span>}
+      </div>
+    </header>
+    <div class="content">
+      <slot />
+    </div>
+  </article>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+  }
+
+  .metadata {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .category {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .content {
+    line-height: 1.7;
+  }
+
+  .content :global(h2) {
+    color: var(--accent-color);
+    margin-top: 2rem;
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .content :global(pre) {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow: auto;
+  }
+</style>

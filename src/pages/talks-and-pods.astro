@@ -1,0 +1,249 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+// In a full implementation, this data would come from a content collection
+// For now, we'll use data from the original site to demonstrate
+const talksData = [
+  {
+    talk: "Leading a Digital Transformation at the Speed of Government - Half Hour",
+    conference: "All Day DevOps 2020",
+    location: "Virtual",
+    date: "November 2020",
+    video: "https://youtu.be/gQTuDp_sOZg?t=1984",
+    website: "https://www.alldaydevops.com/",
+    slides: "https://noti.st/quinncuatro/wJqZX6/leading-a-digital-transformation-at-the-speed-of-government",
+    article: "https://www.alldaydevops.com/blog/leading-a-digital-transformation-at-the-speed-of-government"
+  },
+  {
+    talk: "Leading a Digital Transformation at the Speed of Government - Lightning",
+    conference: "All Things Open 2020",
+    location: "REMOTE - Raleigh, NC",
+    date: "October 2020",
+    video: "https://www.youtube.com/watch?v=MaJDxcyqGe8",
+    website: "https://2020.allthingsopen.org/"
+  },
+  {
+    talk: "Leading a Digital Transformation at the Speed of Government - Lightning",
+    conference: "DevOpsDays Chicago 2020",
+    location: "REMOTE - Chicago, IL",
+    date: "September 2020",
+    video: "https://www.youtube.com/watch?v=sY5AUJAS1kA",
+    website: "https://devopsdays.org/events/2020-chicago/welcome/",
+    slides: "https://noti.st/quinncuatro/yWnk8K/leading-a-digital-transformation-at-the-speed-of-government"
+  },
+  {
+    talk: "Leading a Digital Transformation at the Speed of Government - Lightning",
+    conference: "DevOpsDays Hartford 2019",
+    location: "Hartford, CT",
+    date: "October 2019",
+    video: "https://youtu.be/FbEm8wF"
+  },
+  {
+    talk: "Intro to Docker",
+    conference: "NewHaven.IO Meetup - Container/Kubernetes Talks",
+    location: "New Haven, CT",
+    date: "March 2019",
+    slides: "https://noti.st/quinncuatro/EU4SSf/intro-to-docker",
+    website: "https://www.meetup.com/newhavenio/events/259374344/"
+  },
+  {
+    talk: "Judicial Dashboard - Dashboard View of Court Operations",
+    conference: "U.S. District Courts, IT Conference West",
+    location: "Phoenix, AZ",
+    date: "August 2018"
+  },
+  {
+    talk: "Judicial Dashboard - Dashboard View of Court Operations",
+    conference: "U.S. District Courts, District Operational Practices Forum",
+    location: "Minneapolis, MN",
+    date: "May 2018"
+  },
+  {
+    talk: "Intro to Relational Databases",
+    conference: "LearnToProgram.TV Meetup",
+    location: "New Haven, CT",
+    date: "March 2018"
+  },
+  {
+    talk: "Intro to DevOps Workshop",
+    conference: "Google Developers Group DevFest 2017",
+    location: "New Haven, CT",
+    date: "November 2017"
+  },
+  {
+    talk: "US Webtranet",
+    conference: "U.S. District Courts, Collaborative Applications Development (CAD) Developer's Forum",
+    location: "Webex",
+    date: "January 2017"
+  },
+  {
+    talk: "Human Resources Organizer (HRO)",
+    conference: "U.S. District Courts, District Operational Practices Forum",
+    location: "Orlando, FL",
+    date: "September 2016"
+  }
+];
+
+const podcastsData = [
+  {
+    title: "Episode 148: Innovating a Web3 Future in Connecticut with CT3 DAO",
+    show: "CT Startup Podcast",
+    date: "January 2022",
+    description: "Web3 is the hot new term floating around the web describing a more decentralized internet future where big companies hold less sway. Eric speaks with Henry Quinn and Jake Burden of CT3 DAO and how they are hoping to bring some of that vision and tech to Connecticut.",
+    link: "https://ctstartup.com/2022/01/19/episode-148-innovating-a-web3-future-in-connecticut-with-ct3-dao/"
+  },
+  {
+    title: "Episode 22: NewHaven.IO",
+    show: "Between Two Rocks",
+    date: "August 2019",
+    description: "Steve and Henry from NewHaven.IO join us to talk about the New Haven tech community, how to get into the tech scene, and what our most hated programming languages are.",
+    link: "https://betweentworocks.com/episode-22-newhaven-io/"
+  },
+  {
+    title: "Episode 101: The Water Cooler of New Haven Tech",
+    show: "CT Startup Podcast",
+    date: "February 2019",
+    description: "Introducing NewHaven.IO — The water cooler of the New Haven tech scene. The creators' ultimate goal is to bring a human element to the New Haven tech scene by creating a unified community for the people working within it. They explain to us how the current local tech scene features an expansive catalog of different types of tech and how they are working to bring this wide variety of people together.",
+    link: "https://ctstartup.com/2019/02/26/episode-101-the-water-cooler-of-new-haven-tech/"
+  }
+];
+---
+
+<TerminalLayout
+  title="Talks & Podcasts"
+  activeNav="talks-and-pods"
+  commandPrompt="cat talks_and_podcasts.md"
+  typingSpeed={8}>
+
+  <h1>Talks & Podcasts</h1>
+  <hr />
+
+  <section class="talks-section">
+    <h2>Conference Talks & Presentations</h2>
+    <ul class="list-unstyled">
+      {talksData.map((talk, index) => (
+        <li class="talk-item">
+          <h3>{talk.talk}</h3>
+          <p><strong>{talk.conference}</strong> — {talk.location} — {talk.date}</p>
+          <div class="talk-links">
+            {talk.website && (
+              <a href={talk.website} target="_blank" rel="noopener noreferrer" class="talk-link">[ Website ]</a>
+            )}
+            {talk.slides && (
+              <a href={talk.slides} target="_blank" rel="noopener noreferrer" class="talk-link">[ Slides ]</a>
+            )}
+            {talk.video && (
+              <a href={talk.video} target="_blank" rel="noopener noreferrer" class="talk-link">[ Video ]</a>
+            )}
+            {talk.article && (
+              <a href={talk.article} target="_blank" rel="noopener noreferrer" class="talk-link">[ Article ]</a>
+            )}
+          </div>
+          {index < talksData.length - 1 && <hr />}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <hr class="section-divider" />
+  <hr class="section-divider" />
+
+  <section class="podcasts-section">
+    <h2>Podcast Appearances</h2>
+    <ul class="list-unstyled">
+      {podcastsData.map((podcast, index) => (
+        <li class="podcast-item">
+          <h3>{podcast.title}</h3>
+          <p><strong>{podcast.show}</strong> — {podcast.date}</p>
+          <p>{podcast.description}</p>
+          <div class="podcast-links">
+            <a href={podcast.link} target="_blank" rel="noopener noreferrer" class="podcast-link">[ Listen ]</a>
+          </div>
+          {index < podcastsData.length - 1 && <hr />}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <hr class="section-divider" />
+  <hr class="section-divider" />
+
+  <section class="contact-section">
+    <h2>Interested in having me speak?</h2>
+    <p>I'd love to speak at your conference, meetup, or appear on your podcast! Please reach out via my <a href="/contact">contact page</a>.</p>
+  </section>
+</TerminalLayout>
+
+<style>
+  h1, h2, h3 {
+    color: var(--text-color);
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 1rem 0;
+  }
+
+  .section-divider {
+    margin: 2rem 0;
+  }
+
+  .list-unstyled {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .talk-item,
+  .podcast-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .talk-links,
+  .podcast-links {
+    margin-top: 0.5rem;
+  }
+
+  .talk-link,
+  .podcast-link {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .talk-link:hover,
+  .podcast-link:hover {
+    background-color: var(--accent-color-dark);
+    text-decoration: none;
+  }
+
+  .contact-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+</style>
