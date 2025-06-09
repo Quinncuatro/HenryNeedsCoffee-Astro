@@ -36,61 +36,19 @@ const { title, description = "Blog Posts, Communities, and Projects", image = "/
 </html>
 
 <style is:global>
-	:root {
-		--accent-color: #355366;
-		--accent-color-dark: #274050;
-		--accent-color-light: #87b4c5;
-		--bg-color: #355366;
-		--terminal-bg: #222222;
-		--text-color: #ffffff;
-		--header-bg: #E0E8F0;
-		--link-color: #87b4c5;
-		--link-hover: #005096;
-	}
-
-	html {
-		font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
-		background: var(--bg-color);
-		color: var(--text-color);
-		height: 100%;
-	}
-
-	body {
-		margin: 0;
-		padding: 0;
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		background-color: var(--bg-color);
-	}
-
+	/* All global styles are now in global.css */
 	main {
 		flex: 1;
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--container-width);
 		margin: 0 auto;
 		padding: 0;
 		box-sizing: border-box;
 	}
 
-	a {
-		color: var(--link-color);
-		text-decoration: none;
-	}
-
-	a:hover {
-		text-decoration: underline;
-		color: var(--link-hover);
-	}
-
-	h1, h2, h3, h4, h5, h6 {
-		margin: 1rem 0 0.5rem;
-		color: var(--text-color);
-	}
-
-	p {
-		margin: 0.5rem 0 1rem;
-		line-height: 1.5;
-		color: var(--text-color);
+	/* Add flex styles to body that aren't in global.css */
+	body {
+		display: flex;
+		flex-direction: column;
 	}
 </style>

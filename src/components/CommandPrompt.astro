@@ -1,0 +1,66 @@
+---
+import { getTerminalDateFormat } from '../utils/dateUtils';
+
+interface Props {
+  path?: string;
+  prompt?: string;
+  showDate?: boolean;
+}
+
+const { path = "henryquinn@terminal:~", prompt, showDate = true } = Astro.props;
+const currentLoginPrompt = showDate ? getTerminalDateFormat() : null;
+---
+
+<div class="command-section">
+  {showDate && <p class="login-prompt">{currentLoginPrompt}</p>}
+  <div class="command-prompt">
+    <span class="prompt-path">{path}</span>$ {prompt && <span class="typed">{prompt}</span>}
+    {!prompt && <slot />}
+    <span class="cursor"></span>
+  </div>
+</div>
+
+<style>
+  .command-section {
+    margin-bottom: 2rem;
+  }
+
+  .login-prompt {
+    color: #888;
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .command-prompt {
+    font-family: monospace;
+    margin-bottom: 1rem;
+    color: #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prompt-path {
+    color: #87b4c5;
+  }
+
+  .typed {
+    color: var(--text-color);
+    position: relative;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    background-color: var(--terminal-text);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>

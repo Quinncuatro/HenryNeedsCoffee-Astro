@@ -15,24 +15,10 @@ interface Props {
 
 const { title, description, image, activeNav, commandPrompt = 'whoami', typingSpeed } = Astro.props;
 
-// Format current date similar to Gatsby site
-const now = new Date();
-const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+import { getTerminalDateFormat } from '../utils/dateUtils';
 
-const zerosAreHard = (n) => {
-  return n < 10 ? "0" + n : n;
-};
-
-const day = days[now.getDay()];
-const month = months[now.getMonth()];
-const date = now.getDate();
-const hours = zerosAreHard(now.getHours());
-const minutes = zerosAreHard(now.getMinutes());
-const seconds = zerosAreHard(now.getSeconds());
-const year = now.getFullYear();
-
-const currentLoginPrompt = `Current login: ${day} ${month} ${date} ${hours}:${minutes}:${seconds} ${year}`;
+// Get terminal-style date format for login prompt
+const currentLoginPrompt = getTerminalDateFormat();
 ---
 
 <Layout title={title} description={description} image={image}>
@@ -59,92 +45,19 @@ const currentLoginPrompt = `Current login: ${day} ${month} ${date} ${hours}:${mi
 </Layout>
 
 <style>
-  .terminal-window {
-    text-align: left;
-    max-width: 800px;
-    height: auto;
-    min-height: 85vh;
-    margin: 5vh auto 0;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
-    overflow: hidden;
-  }
-
-  .terminal-content {
-    color: white;
-    font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
-    font-size: 11pt;
-    background: #222222;
-    border-radius: 0 0 8px 8px;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    position: relative;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-  }
-
+  /* Terminal styling classes are now defined in global.css */
+  /* Component-specific overrides only */
   .login-prompt {
-    color: #fff;
     font-size: 0.9rem;
-    font-family: monospace;
-    white-space: pre-wrap;
-  }
-
-  .menu-bar {
-    margin: 20px 0;
-    padding: 10px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .menu-bar a {
-    color: #87b4c5;
-    text-decoration: none;
-    transition: color 0.2s;
   }
 
   .menu-bar a:hover {
     text-decoration: none;
-    color: #005096;
   }
-
-  .menu-bar a.active {
-    font-weight: bold;
-  }
-
-  .command-prompt {
-    font-family: monospace;
-    margin-bottom: 2rem;
-    color: #ccc;
-  }
-
-  /* Command prompt styling moved to TypingEffect component */
 
   @media (max-width: 768px) {
-    .terminal-content {
-      padding: 15px;
-    }
-
     .menu-bar {
       justify-content: center;
-      gap: 0.75rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .terminal-content {
-      padding: 10px;
-    }
-
-    .terminal-window {
-      margin: 10px auto;
-      min-height: 85vh;
     }
   }
 </style>

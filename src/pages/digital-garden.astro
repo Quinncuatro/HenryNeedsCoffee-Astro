@@ -1,6 +1,9 @@
 ---
 import TerminalLayout from '../layouts/TerminalLayout.astro';
 import { getCollection } from 'astro:content';
+import PostCard from '../components/PostCard.astro';
+import { sortByDate } from '../utils/collectionUtils';
+import { simpleExcerpt } from '../utils/stringUtils';
 
 // Get all digital garden posts
 // Note: You'll need to create a collection for digital garden posts
@@ -10,9 +13,7 @@ const gardenPosts = await getCollection('garden', ({ data }) => {
 });
 
 // Sort posts by date (newest first)
-const sortedPosts = gardenPosts ? gardenPosts.sort(
-  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
-) : [];
+const sortedPosts = sortByDate(gardenPosts || []);
 ---
 
 <TerminalLayout
@@ -27,14 +28,13 @@ const sortedPosts = gardenPosts ? gardenPosts.sort(
       <div class="garden-posts">
         {sortedPosts.length > 0 ? (
           sortedPosts.map((post) => (
-            <article class="post-item">
-              <h2><a href={`/digital-garden/${post.slug}`}>{post.data.title}</a></h2>
-              <p class="post-date">{new Date(post.data.date).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-              {post.data.category && (
-                <div class="post-category">{post.data.category}</div>
-              )}
-              <p class="post-excerpt">{post.data.desc || post.body.slice(0, 280)}</p>
-            </article>
+            <PostCard
+              title={post.data.title}
+              date={post.data.date}
+              url={`/digital-garden/${post.slug}`}
+              excerpt={post.data.desc || simpleExcerpt(post.body)}
+              category={post.data.category}
+            />
           ))
         ) : (
           <p class="empty-message">Seeds are being planted. Check back soon for growing thoughts!</p>
@@ -43,61 +43,13 @@ const sortedPosts = gardenPosts ? gardenPosts.sort(
 </TerminalLayout>
 <style>
   .garden-posts {
-    margin-top: 30px;
-  }
-
-  .post-item {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .post-item h2 {
-    margin-bottom: 8px;
-  }
-
-  .post-item h2 a {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-
-  .post-item h2 a:hover {
-    color: var(--link-hover);
-    text-decoration: none;
-  }
-
-  .post-date {
-    color: #777;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-
-  .post-category {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
-  }
-
-  .post-excerpt {
-    line-height: 1.5;
-    color: var(--text-color);
-  }
-
-  .read-more {
-    display: inline-block;
-    margin-top: 10px;
-    color: var(--accent-color);
-    font-weight: bold;
+    margin-top: var(--space-lg);
   }
 
   .empty-message {
-    padding: 20px;
+    padding: var(--space-lg);
     text-align: center;
     font-style: italic;
-    color: #777;
+    color: var(--color-text-muted);
   }
 </style>

@@ -1,0 +1,89 @@
+---
+import { formatDate } from '../utils/dateUtils';
+import { createExcerpt } from '../utils/stringUtils';
+
+interface Props {
+  title: string;
+  date: Date;
+  url: string;
+  excerpt?: string;
+  content?: string;
+  category?: string;
+}
+
+const { title, date, url, excerpt, content, category } = Astro.props;
+const formattedDate = formatDate(date);
+const postExcerpt = excerpt || (content ? createExcerpt(content) : '');
+---
+
+<article class="post-card">
+  <header>
+    <h2 class="post-title">
+      <a href={url}>{title}</a>
+    </h2>
+    <p class="post-meta">
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+      {category && <span class="post-category">{category}</span>}
+    </p>
+  </header>
+  {postExcerpt && <p class="post-excerpt">{postExcerpt}</p>}
+</article>
+
+<style>
+  .post-card {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-title {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+
+  .post-title a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  .post-title a:hover {
+    text-decoration: underline;
+  }
+
+  .post-meta {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .post-category {
+    margin-left: 1rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .post-excerpt {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .read-more {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--link-color);
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+</style>

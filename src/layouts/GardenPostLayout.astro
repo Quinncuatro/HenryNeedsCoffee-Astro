@@ -2,6 +2,8 @@
 import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { formatDate, getTerminalDateFormat } from '../utils/dateUtils';
+import CommandPrompt from '../components/CommandPrompt.astro';
 
 interface Props {
   title: string;
@@ -10,30 +12,10 @@ interface Props {
 }
 
 const { title, date, desc } = Astro.props;
-const formattedDate = new Date(date).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const formattedDate = formatDate(date);
 
-// Format current date for the terminal-style login prompt
-const now = new Date();
-const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-const zerosAreHard = (n) => {
-  return n < 10 ? "0" + n : n;
-};
-
-const day = days[now.getDay()];
-const month = months[now.getMonth()];
-const date_num = now.getDate();
-const hours = zerosAreHard(now.getHours());
-const minutes = zerosAreHard(now.getMinutes());
-const seconds = zerosAreHard(now.getSeconds());
-const year = now.getFullYear();
-
-const currentLoginPrompt = `Current login: ${day} ${month} ${date_num} ${hours}:${minutes}:${seconds} ${year}`;
+// Get terminal-style date format for login prompt
+const currentLoginPrompt = getTerminalDateFormat();
 ---
 
 <Layout title={title} description={desc || `Digital Garden: ${title}`}>
@@ -51,7 +33,7 @@ const currentLoginPrompt = `Current login: ${day} ${month} ${date_num} ${hours}:
         <a href="/talks-and-pods">Talks & Pods</a>
         <a href="/contact">Contact</a>
       </nav>
-      <p class="command-prompt">[hquinn@HenryNeeds ~]$ <span class="typed">cat digital-garden/${title.toLowerCase().replace(/\s+/g, '-')}.md<span class="cursor"></span></span></p>
+      <CommandPrompt prompt={`cat digital-garden/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
 
       <article class="garden-post">
         <header>
@@ -80,164 +62,94 @@ const currentLoginPrompt = `Current login: ${day} ${month} ${date_num} ${hours}:
 </Layout>
 
 <style>
+  /* Terminal window styling comes from global.css */
   .terminal-window {
     max-width: 900px;
-    margin: 20px auto;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-
-  .terminal-content {
-    padding: 2rem;
-    color: var(--text-color);
-  }
-
-  .login-prompt {
-    color: #888;
-    font-family: monospace;
-    white-space: pre-wrap;
-  }
-
-  .menu-bar {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .menu-bar a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: color 0.2s;
-    font-weight: 500;
-  }
-
-  .menu-bar a:hover {
-    text-decoration: underline;
-  }
-
-  .menu-bar a.active {
-    color: var(--accent-color-dark);
-    font-weight: bold;
-  }
-
-  .command-prompt {
-    font-family: monospace;
-    margin-bottom: 2rem;
-  }
-
-  .typed {
-    color: var(--text-color);
-  }
-
-  .cursor {
-    display: inline-block;
-    width: 0.5em;
-    height: 1em;
-    background-color: var(--accent-color);
-    animation: blink 1s step-end infinite;
-    vertical-align: text-bottom;
-    margin-left: 2px;
-  }
-
-  @keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
   }
 
   .garden-post {
     max-width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-xl);
   }
 
   .garden-post header {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-xl);
   }
 
   .garden-post h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
   }
 
   .metadata {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #666;
+    gap: var(--space-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
   }
 
   .garden-note {
     display: inline-block;
-    padding: 0.2rem 0.5rem;
-    background-color: var(--accent-color-light);
-    color: var(--accent-color);
-    border-radius: 4px;
-    font-size: 0.8rem;
+    padding: calc(var(--space-xs) / 2) var(--space-xs);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
   }
 
   .content {
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-xl);
   }
 
   .content p {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-lg);
   }
 
   .content h2 {
-    margin-top: 2rem;
-    color: var(--accent-color);
+    margin-top: var(--space-xl);
+    color: var(--color-primary);
   }
 
   .post-footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #eee;
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
   }
 
   .garden-explanation {
-    padding: 1rem;
+    padding: var(--space-md);
     background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-    font-size: 0.9rem;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
   }
 
   .navigation {
-    margin-top: 1.5rem;
+    margin-top: var(--space-lg);
     display: flex;
     justify-content: space-between;
   }
 
   .back-link {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 4px;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border-radius: var(--border-radius-sm);
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background-color var(--transition-fast);
   }
 
   .back-link:hover {
-    background-color: var(--accent-color-dark);
+    background-color: var(--color-primary-dark);
     text-decoration: none;
   }
 
   @media (max-width: 768px) {
-    .terminal-content {
-      padding: 1.5rem;
-    }
-
-    .menu-bar {
-      justify-content: center;
-    }
-
     .garden-post h1 {
-      font-size: 2rem;
+      font-size: var(--font-size-2xl);
     }
   }
 </style>

@@ -1,111 +1,83 @@
-# HNC-Astro
+# Henry Needs Coffee - Personal Website
 
-A modern web project built with Astro, focusing on performance and developer experience.
+A modern personal website built with Astro 5.8.2, featuring a terminal-inspired UI design. 
 
-## 📚 Project Overview
+## Technology Stack
 
-This project is built using Astro v5.8.2, a modern static site generator that delivers lightning-fast performance. It's designed to be a foundation for building static websites with excellent developer experience and optimal end-user performance.
+- **Framework**: [Astro 5.8.2](https://astro.build/)
+- **Deployment**: [Netlify](https://www.netlify.com/)
+- **Content**: Markdown-based content collections for blog and digital garden
 
-## 🚀 Project Structure
+## Project Structure
 
-```text
-/
-├── public/              # Static assets that will be served as-is
-│   └── favicon.svg
-├── src/
-│   ├── assets/         # Project assets (images, fonts, etc.)
-│   ├── components/     # Reusable UI components
-│   ├── content/        # Content collections and data
-│   ├── layouts/        # Page layouts and templates
-│   │   └── Layout.astro
-│   ├── pages/         # Page components and routing
-│   │   └── index.astro
-│   └── styles/        # Global styles and CSS modules
-└── package.json
+- **src/layouts/** - Base layout components
+  - `Layout.astro` - Base HTML structure
+  - `TerminalLayout.astro` - Terminal UI wrapper
+  - `BlogPostLayout.astro` - Layout for blog posts
+  - `GardenPostLayout.astro` - Layout for digital garden posts
+  
+- **src/components/** - Reusable UI components
+  - `Header.astro` - Terminal header with buttons
+  - `Footer.astro` - Site footer
+  - `TypingEffect.astro` - Terminal typing animation
+  - `CommandPrompt.astro` - Terminal command prompt
+  - `PostCard.astro` - Card component for blog/garden posts
+  
+- **src/utils/** - Utility functions
+  - `dateUtils.js` - Date formatting utilities
+  - `stringUtils.js` - String manipulation and excerpting
+  - `collectionUtils.js` - Collection sorting and filtering
+  
+- **src/content/** - Content collections
+  - `blog/` - Blog posts in markdown
+  - `garden/` - Digital garden posts in markdown
+
+- **src/pages/** - Route-based page components
+  - `index.astro` - Homepage
+  - `blog.astro` - Blog listing page
+  - `blog/[slug].astro` - Dynamic blog post route
+  - `digital-garden.astro` - Digital garden listing
+  - `digital-garden/[slug].astro` - Dynamic garden post route
+  - `resume.astro` - Resume page
+  - `talks-and-pods.astro` - Talks and podcast listing
+  - `contact.astro` - Contact information
+
+- **src/styles/** - Global stylesheets
+  - `global.css` - Global CSS variables, utility classes, and base styles
+
+## Development Features
+
+- **CSS Variables**: Comprehensive design system with semantic variables
+- **Utility Classes**: Tailwind-inspired utility classes for layout and styling
+- **DRY Components**: Reusable component architecture
+- **Responsive Design**: Mobile-friendly layouts
+- **TypeScript**: Type safety with interfaces for component props
+
+## Development Commands
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
 ```
 
-## 🛠️ Tech Stack
+## Implemented Features
 
-- **Framework:** [Astro](https://astro.build/) v5.8.2
-- **Type Safety:** TypeScript support built-in
-- **Styling:** Native CSS support with Scoped Styles
+- Terminal-style UI with command prompt animation
+- Blog with markdown content
+- Digital Garden section for work-in-progress thoughts
+- Responsive design for mobile devices
+- Dark mode by default
 
-## 🧞 Commands
+## License
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 🚀 Getting Started
-
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-4. Open [http://localhost:4321](http://localhost:4321) in your browser
-
-## 📦 Project Features
-
-- **Optimized Performance:** Built with Astro's partial hydration for minimal JavaScript
-- **Component-Based:** Organized structure with reusable components
-- **Asset Management:** Dedicated assets directory for better organization
-- **Content Management:** Structured content directory for easy content handling
-- **Flexible Styling:** Dedicated styles directory for global and component styles
-
-## 🚀 Deployment
-
-### Netlify Deployment
-
-This project is configured for seamless deployment on Netlify:
-
-1. **Connect your repository:**
-   - Sign in to [Netlify](https://app.netlify.com/)
-   - Click "New site from Git" and select your repository
-   - Select the branch you want to deploy (usually `main` or `master`)
-
-2. **Build settings:**
-   - The `netlify.toml` file in the project root already configures the build settings
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-
-3. **Deploy:**
-   - Click "Deploy site"
-   - Netlify will automatically build and deploy your site
-
-4. **Custom domain:**
-   - In the Netlify dashboard, go to "Domain settings"
-   - Add your custom domain and configure DNS settings
-
-5. **Continuous deployment:**
-   - Netlify will automatically rebuild and deploy when you push changes to your repository
-
-The included `netlify.toml` handles all configuration, including Node version, redirects for SPA routing, and build settings.
-
-## 🔧 Development
-
-- The `src/pages` directory uses file-based routing
-- Components in `src/components` can be imported and used in any page
-- Global styles are located in `src/styles`
-- Layouts in `src/layouts` provide consistent page structures
-
-## 👀 Learn More
-
-- [Astro Documentation](https://docs.astro.build)
-- [Astro Discord Community](https://astro.build/chat)
-- [Astro GitHub Repository](https://github.com/withastro/astro)
-
-## 📝 License
-
-This project is MIT licensed.
+MIT
+EOL < /dev/null

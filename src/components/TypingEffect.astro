@@ -74,19 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   .command-prompt {
-    font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
-    margin-bottom: 2rem;
-    color: #ccc;
+    font-family: var(--font-family-mono);
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-light);
     white-space: nowrap;
   }
 
   .typed {
-    color: var(--text-color, #fff);
+    color: var(--color-text);
     position: relative;
   }
   
-  /* We're using the JS approach now - removed CSS typing animation */
-
   /* Style for terminal content */
   .content-container {
     min-height: 200px; /* Prevent layout shifts */
@@ -98,19 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     height: auto;
   }
   
-  /* Cursor styling */
+  /* Cursor styling uses global styles from global.css */
   .cursor {
-    display: inline-block;
-    width: 8px;
-    height: 1em;
-    background-color: var(--text-color, #fff);
-    margin-left: 2px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
+    margin-left: var(--space-xs);
   }
 </style>
