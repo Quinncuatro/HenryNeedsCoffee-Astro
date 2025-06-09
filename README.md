@@ -64,6 +64,35 @@ All commands are run from the root of the project, from a terminal:
 - **Content Management:** Structured content directory for easy content handling
 - **Flexible Styling:** Dedicated styles directory for global and component styles
 
+## 🚀 Deployment
+
+### Netlify Deployment
+
+This project is configured for seamless deployment on Netlify:
+
+1. **Connect your repository:**
+   - Sign in to [Netlify](https://app.netlify.com/)
+   - Click "New site from Git" and select your repository
+   - Select the branch you want to deploy (usually `main` or `master`)
+
+2. **Build settings:**
+   - The `netlify.toml` file in the project root already configures the build settings
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+
+3. **Deploy:**
+   - Click "Deploy site"
+   - Netlify will automatically build and deploy your site
+
+4. **Custom domain:**
+   - In the Netlify dashboard, go to "Domain settings"
+   - Add your custom domain and configure DNS settings
+
+5. **Continuous deployment:**
+   - Netlify will automatically rebuild and deploy when you push changes to your repository
+
+The included `netlify.toml` handles all configuration, including Node version, redirects for SPA routing, and build settings.
+
 ## 🔧 Development
 
 - The `src/pages` directory uses file-based routing

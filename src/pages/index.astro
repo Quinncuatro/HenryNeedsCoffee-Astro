@@ -2,24 +2,18 @@
 import TerminalLayout from '../layouts/TerminalLayout.astro';
 import { getCollection } from 'astro:content';
 
-const featuredProjects = [
-  {
-    title: "Project 1",
-    description: "Description of Project 1",
-    link: "https://github.com/quinncuatro/project1"
-  },
-  {
-    title: "Project 2",
-    description: "Description of Project 2",
-    link: "https://github.com/quinncuatro/project2"
-  },
-  {
-    title: "Project 3",
-    description: "Description of Project 3",
-    link: "https://github.com/quinncuatro/project3"
-  }
-];
+import { resumeData as resumeImport } from './resume.astro';
 
+const featuredProjects = [...resumeImport.projects]
+  .sort((a, b) => parseInt(b.year) - parseInt(a.year))
+  .slice(0, 4)
+  .map(project => ({
+    title: project.name,
+    description: project.description,
+    year: project.year,
+    technologies: project.technologies,
+    link: project.github || "#"
+  }));
 const blogPosts = await getCollection('blog');
 
 const recentPosts = blogPosts
@@ -70,19 +64,6 @@ function createExcerpt(text, maxLength = 150) {
     </div>
   </div>
 
-  <div class="featured-section">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-      {featuredProjects.map(project => (
-        <div class="project-card">
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
-          <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">View Project</a>
-        </div>
-      ))}
-    </div>
-  </div>
-
   <div class="recent-posts-teaser">
     <h2>Recent Writing</h2>
     <div class="recent-posts">
@@ -97,7 +78,24 @@ function createExcerpt(text, maxLength = 150) {
         </article>
     ))}
     </div>
-    <p class="more-link">See more on my <a href="/blog">blog</a> or explore my <a href="/digital-garden">Digital Garden</a> for works-in-progress.</p>
+    <p class="more-link">See more on my <a href="/blog" target="_blank" rel="noopener noreferrer">blog</a> or explore my <a href="/digital-garden" target="_blank" rel="noopener noreferrer">Digital Garden</a> for works-in-progress.</p>
+  </div>
+
+  <div class="featured-section">
+    <h2>Featured Projects</h2>
+    <div class="featured-projects">
+      {featuredProjects.map((project, index) => (
+        <div class="featured-project-item">
+          <div class="project-header">
+            <h3><a href={project.link} target="_blank" rel="noopener noreferrer">{project.title}</a></h3>
+            <span class="project-year">{project.year}</span>
+          </div>
+          <p class="project-description">{project.description}</p>
+          <div class="project-tech">Technologies: {project.technologies}</div>
+        </div>
+      ))}
+    </div>
+    <p class="more-link">See more on my <a href="https://github.com/quinncuatro" target="_blank" rel="noopener noreferrer">GitHub</a> or explore my <a href="/resume" target="_blank" rel="noopener noreferrer">resume</a> for works-in-progress.</p>
   </div>
 
   <div class="contact-teaser">
@@ -133,6 +131,16 @@ function createExcerpt(text, maxLength = 150) {
   .recent-posts-teaser,
   .contact-teaser {
     margin-bottom: 3rem;
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+  }
+
+  .recent-posts-teaser p,
+  .contact-teaser p {
+    margin-bottom: 0.5rem;
+    text-align: left;
   }
 
   h2 {
@@ -157,12 +165,6 @@ function createExcerpt(text, maxLength = 150) {
     border: 1px solid #444;
     border-radius: 8px;
     background-color: var(--card-bg);
-    transition: transform 0.3s, box-shadow 0.3s;
-	}
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	}
 
   .project-card h3 {
@@ -170,6 +172,40 @@ function createExcerpt(text, maxLength = 150) {
     margin-top: 0;
     margin-bottom: 1rem;
 		}
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-year {
+    color: #777;
+			font-size: 0.9rem;
+		}
+
+  .project-description {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    }
+
+  .project-tech {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+    }
+
+  .featured-project-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #444;
+  }
+
+
+  .recent-posts, .featured-projects {
+    margin-bottom: 1rem;
+  }
 
   .project-link {
     display: inline-block;
@@ -187,20 +223,6 @@ function createExcerpt(text, maxLength = 150) {
     background-color: var(--accent-color-dark);
     text-decoration: none;
 	}
-
-  .recent-posts-teaser,
-  .contact-teaser {
-    background-color: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #444;
-  }
-
-  .recent-posts-teaser p,
-  .contact-teaser p {
-    margin-bottom: 0.5rem;
-    text-align: left;
-  }
 
   .recent-post-item {
     margin-bottom: 2rem;
