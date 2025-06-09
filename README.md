@@ -77,6 +77,36 @@ npm run preview
 - Responsive design for mobile devices
 - Dark mode by default
 
+## Deployment
+
+### Netlify Setup
+
+- **Build Settings**:
+  - Build command: `npm run build`
+  - Publish directory: `dist`
+  - Node.js version: 18
+
+- **Redirects**:
+  - All routes are redirected to `index.html` to support client-side routing
+
+- **Local Development with Netlify CLI**:
+  ```bash
+  # Install Netlify CLI globally
+  npm install -g netlify-cli
+
+  # Link project to your Netlify site
+  netlify link
+
+  # Test production build locally
+  netlify build
+  netlify dev
+  ```
+
+- **Deployment**:
+  - Automatic deploys are triggered when pushing to the main branch
+  - Manual deploys can be triggered from the Netlify dashboard
+  - Preview deploys are available for pull requests
+
 ## License
 
 MIT

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { formatDate, getTerminalDateFormat } from '../utils/dateUtils';
 import CommandPrompt from '../components/CommandPrompt.astro';
+import NavBar from '../components/NavBar.astro';
 
 interface Props {
   title: string;
@@ -19,20 +20,13 @@ const currentLoginPrompt = getTerminalDateFormat();
 ---
 
 <Layout title={title} description={desc || `Digital Garden: ${title}`}>
-  <Header />
   <div class="terminal-window">
+    <Header />
     <div class="terminal-content">
       <span class="login-prompt">{currentLoginPrompt}<br />
       Welcome to HenryNeeds.Coffee!</span>
       <br /><br />
-      <nav class="menu-bar">
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/digital-garden" class="active">Digital Garden</a>
-        <a href="/resume">Resume</a>
-        <a href="/talks-and-pods">Talks & Pods</a>
-        <a href="/contact">Contact</a>
-      </nav>
+      <NavBar activeNav="digital-garden" />
       <CommandPrompt prompt={`cat digital-garden/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
 
       <article class="garden-post">
@@ -111,6 +105,14 @@ const currentLoginPrompt = getTerminalDateFormat();
   .content h2 {
     margin-top: var(--space-xl);
     color: var(--color-primary);
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--space-lg) 0;
+    border-radius: var(--border-radius-sm);
   }
 
   .post-footer {

@@ -2,7 +2,9 @@
 import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { formatDate } from '../utils/dateUtils';
+import { formatDate, getTerminalDateFormat } from '../utils/dateUtils';
+import CommandPrompt from '../components/CommandPrompt.astro';
+import NavBar from '../components/NavBar.astro';
 
 interface Props {
   title: string;
@@ -16,34 +18,53 @@ const formattedDate = formatDate(date);
 ---
 
 <Layout title={title} description={desc}>
-  <Header />
-  <article class="blog-post">
-    <header>
-      <h1>{title}</h1>
-      <div class="metadata">
-        <time datetime={date.toISOString()}>{formattedDate}</time>
-        {category && <span class="category">{category}</span>}
-      </div>
-    </header>
-    <div class="content">
-      <slot />
+  <div class="terminal-window">
+    <Header />
+    <div class="terminal-content">
+      <span class="login-prompt">{getTerminalDateFormat()}<br />
+      Welcome to HenryNeeds.Coffee!</span>
+      <br /><br />
+      <NavBar activeNav="blog" />
+      <CommandPrompt prompt={`cat blog/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
+      
+      <article class="blog-post">
+        <header>
+          <h1>{title}</h1>
+          <div class="metadata">
+            <time datetime={date.toISOString()}>{formattedDate}</time>
+            {category && <span class="category">{category}</span>}
+          </div>
+        </header>
+        <div class="content">
+          <slot />
+        </div>
+        <footer class="post-footer">
+          <div class="navigation">
+            <a href="/blog" class="back-link">← Back to Blog</a>
+          </div>
+        </footer>
+      </article>
     </div>
-  </article>
+  </div>
   <Footer />
 </Layout>
 
 <style>
-  .blog-post {
-    max-width: 800px;
-    margin: var(--space-xl) auto;
-    padding: var(--space-md);
+  /* Terminal window styling comes from global.css */
+  .terminal-window {
+    max-width: 900px;
   }
 
-  header {
+  .blog-post {
+    max-width: 100%;
     margin-bottom: var(--space-xl);
   }
 
-  h1 {
+  .blog-post header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .blog-post h1 {
     font-size: var(--font-size-3xl);
     margin-bottom: var(--space-sm);
     color: var(--color-primary);
@@ -51,10 +72,10 @@ const formattedDate = formatDate(date);
 
   .metadata {
     display: flex;
+    align-items: center;
     gap: var(--space-md);
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-md);
   }
 
   .category {
@@ -66,16 +87,24 @@ const formattedDate = formatDate(date);
 
   .content {
     line-height: 1.7;
+    margin-bottom: var(--space-xl);
+  }
+
+  .content :global(p) {
+    margin-bottom: var(--space-lg);
   }
 
   .content :global(h2) {
-    color: var(--color-primary);
     margin-top: var(--space-xl);
+    color: var(--color-primary);
   }
 
   .content :global(img) {
     max-width: 100%;
     height: auto;
+    display: block;
+    margin: var(--space-lg) 0;
+    border-radius: var(--border-radius-sm);
   }
 
   .content :global(pre) {
@@ -84,5 +113,39 @@ const formattedDate = formatDate(date);
     border-radius: var(--border-radius-sm);
     overflow: auto;
     color: var(--color-code-text);
+    margin: var(--space-lg) 0;
+  }
+
+  .post-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .navigation {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .back-link {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+  }
+
+  .back-link:hover {
+    background-color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .blog-post h1 {
+      font-size: var(--font-size-2xl);
+    }
   }
 </style>

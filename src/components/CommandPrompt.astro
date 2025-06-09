@@ -7,7 +7,7 @@ interface Props {
   showDate?: boolean;
 }
 
-const { path = "henryquinn@terminal:~", prompt, showDate = true } = Astro.props;
+const { path = "[Guest@HenryNeeds ~]", prompt, showDate = true } = Astro.props;
 const currentLoginPrompt = showDate ? getTerminalDateFormat() : null;
 ---
 
