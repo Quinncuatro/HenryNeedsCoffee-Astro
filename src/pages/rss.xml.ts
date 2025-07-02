@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import { sortByDate } from '../utils/collectionUtils.js';
+import { markdownToHtml } from '../utils/markdownToHtml.js';
 
 export async function GET(context) {
   // Get all published blog posts
@@ -22,8 +23,8 @@ export async function GET(context) {
       link: `/blog/${post.slug}/`,
       guid: `/blog/${post.slug}/`,
       categories: post.data.category ? [post.data.category] : [],
-      // Include post content - Astro RSS will handle HTML generation from markdown
-      content: post.body,
+      // Convert markdown to sanitized HTML for RSS readers
+      content: markdownToHtml(post.body),
     })),
     customData: `<language>en-us</language>
     <managingEditor>henry@henryneeds.coffee (Henry Quinn)</managingEditor>
