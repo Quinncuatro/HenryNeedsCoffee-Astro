@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 import { getCollection } from 'astro:content';
 
 import { resumeData as resumeImport } from './resume.astro';
@@ -47,8 +47,9 @@ function createExcerpt(text, maxLength = 150) {
 }
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Home"
+  pageType="main"
   activeNav="home"
   commandPrompt="whoami"
   typingSpeed={10}>
@@ -104,7 +105,7 @@ function createExcerpt(text, maxLength = 150) {
     <h2>Get In Touch</h2>
     <p>Interested in collaborating or just want to say hi? Visit my <a href="/contact">contact page</a> to reach out!</p>
   </div>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 
 <style>
   .intro-section {

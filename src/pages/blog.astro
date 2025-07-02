@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 import { getCollection } from 'astro:content';
 import PostCard from '../components/PostCard.astro';
 import { sortByDate } from '../utils/collectionUtils';
@@ -14,8 +14,9 @@ const sortedPosts = sortByDate(blogPosts);
 // Using imported createExcerpt function from utils/stringUtils.js
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Blog"
+  pageType="main"
   activeNav="blog"
   commandPrompt="ls blog/"
   typingSpeed={10}>
@@ -33,7 +34,7 @@ const sortedPosts = sortByDate(blogPosts);
           />
         ))}
       </div>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 <style>
   .blog-posts {
     margin-top: var(--space-lg);

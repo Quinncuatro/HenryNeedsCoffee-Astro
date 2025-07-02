@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 import { getCollection } from 'astro:content';
 import PostCard from '../components/PostCard.astro';
 import { sortByDate } from '../utils/collectionUtils';
@@ -16,8 +16,9 @@ const gardenPosts = await getCollection('garden', ({ data }) => {
 const sortedPosts = sortByDate(gardenPosts || []);
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Digital Garden"
+  pageType="main"
   activeNav="digital-garden"
   commandPrompt="./digital-garden.sh"
   typingSpeed={8}>
@@ -40,7 +41,7 @@ const sortedPosts = sortByDate(gardenPosts || []);
           <p class="empty-message">Seeds are being planted. Check back soon for growing thoughts!</p>
         )}
       </div>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 <style>
   .garden-posts {
     margin-top: var(--space-lg);

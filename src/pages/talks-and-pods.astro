@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 // In a full implementation, this data would come from a content collection
 // For now, we'll use data from the original site to demonstrate
 const talksData = [
@@ -108,8 +108,9 @@ const podcastsData = [
 ];
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Talks & Podcasts"
+  pageType="main"
   activeNav="talks-and-pods"
   commandPrompt="cat talks_and_podcasts.md"
   typingSpeed={8}>
@@ -171,7 +172,7 @@ const podcastsData = [
     <h2>Interested in having me speak?</h2>
     <p>I'd love to speak at your conference, meetup, or appear on your podcast! Please reach out via my <a href="/contact">contact page</a>.</p>
   </section>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 
 <style>
   h1, h2, h3 {
