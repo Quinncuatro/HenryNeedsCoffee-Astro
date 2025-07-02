@@ -21,9 +21,9 @@ const formattedDate = formatDate(date);
   <div class="terminal-window">
     <Header />
     <div class="terminal-content">
-      <span class="login-prompt">{getTerminalDateFormat()}<br />
+      <span class="login-prompt">{getTerminalDateFormat()}
       Welcome to HenryNeeds.Coffee!</span>
-      <br /><br />
+      <br />
       <NavBar activeNav="blog" />
       <CommandPrompt prompt={`cat blog/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
       

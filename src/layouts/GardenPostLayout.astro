@@ -23,9 +23,9 @@ const currentLoginPrompt = getTerminalDateFormat();
   <div class="terminal-window">
     <Header />
     <div class="terminal-content">
-      <span class="login-prompt">{currentLoginPrompt}<br />
+      <span class="login-prompt">{currentLoginPrompt}
       Welcome to HenryNeeds.Coffee!</span>
-      <br /><br />
+      <br />
       <NavBar activeNav="digital-garden" />
       <CommandPrompt prompt={`cat digital-garden/${title.toLowerCase().replace(/\s+/g, '-')}.md`} />
 

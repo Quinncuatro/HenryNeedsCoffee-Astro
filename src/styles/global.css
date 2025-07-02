@@ -210,6 +210,9 @@ img {
   top: 0;
   bottom: 0;
   overflow: auto;
+  min-height: calc(85vh - 30px); /* Ensure content fills terminal minus header height */
+  display: flex;
+  flex-direction: column;
 }
 
 .login-prompt {
