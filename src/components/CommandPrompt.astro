@@ -12,7 +12,7 @@ const currentLoginPrompt = showDate ? getTerminalDateFormat() : null;
 ---
 
 <div class="command-section">
-  {showDate && <p class="login-prompt">{currentLoginPrompt}</p>}
+  <!-- {showDate && <p class="login-prompt">{currentLoginPrompt}</p>} -->
   <div class="command-prompt">
     <span class="prompt-path">{path}</span>$ {prompt && <span class="typed">{prompt}</span>}
     {!prompt && <slot />}
