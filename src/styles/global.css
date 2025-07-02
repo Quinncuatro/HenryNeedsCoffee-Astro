@@ -161,7 +161,7 @@ img {
   max-width: 800px;
   height: auto;
   min-height: 85vh;
-  margin: 5vh auto 0;
+  margin: 5vh auto;
   border-radius: var(--border-radius-lg);
   position: relative;
   box-shadow: var(--shadow-terminal);
@@ -354,6 +354,12 @@ table th {
 }
 
 /* Responsive adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .terminal-window {
+    margin: 3vh auto;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 15px;
@@ -379,7 +385,7 @@ table th {
   }
 
   .terminal-window {
-    margin: var(--space-sm) auto;
+    margin: 2vh auto;
     min-height: 85vh;
   }
 }
