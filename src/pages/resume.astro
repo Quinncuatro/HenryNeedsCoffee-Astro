@@ -8,112 +8,140 @@ export const resumeData = {
       employer: "TED Conferences",
       position: "Senior DevOps Engineer",
       time: "May 2024 - Present",
-      details: "",
-      technologies: "Ansible, AWS (Aurora, EC2, ECS, IAM, SSM), Bash, Docker, Python, Ruby"
+      details: `- Stuff`,
+      technologies: "AWS (Bedrock, CloudWatch, EC2, ECS, IAM, Lambda, RDS, Route53, S3, SSM), New Relic, GitHub (Actions, Repos), Fastly, Varnish, Docker, Terraform, Ansible, Bash, Ruby on Rails, Next.js"
+    },
+    {
+      employer: "NewHaven.IO (Non-Profit)",
+      position: "President, Member Board of Directors",
+      time: "November 2018 - Present",
+      details: `- Organizing events around the city for our members to network and learn new technology skills.
+        - Partnering with other technology and non-profit focused organizations to help connect and align groups and individuals.
+        - Creating a stronger tech and startup minded community by fostering a culture of creation and experimentation.
+        - Managed a team of developers to create and launch a new website for the group.`,
+      volunteer: true,
+      resource_url_1: "https://newhaven.io",
+      resource_title_1: "NewHaven.IO Website"
     },
     {
       employer: "Acuity Brands Lighting",
       position: "Senior Application Developer",
       time: "September 2021 - August 2023",
-      details: "Automated access group processes, drafted secret expiration policies, productionized in-house solution for monitoring client secret expirations, selected C4 modeling framework for technical documentation, and planned the company's first internal hackathon focused on Temporal workflow engine.",
-      technologies: "Python, PowerShell, Azure Pipelines, Kubernetes, ArgoCD, MS Graph, SendGrid"
+      details: `- Automated processes around ensuring squads have the proper access groups trickled down from their departments and business units.
+        - Worked with our security team to draft proposal policies around secret expirations and automated rotation.
+        - Productionized and deployed an in-house solution to monitor and alert stakeholders about client secrets that are nearing their expiration dates.
+        - Selected a C4 modeling framework for the company and created training materials: "Getting Started" documentation and an eLearning video series.
+        - Planned and hosted the first event in a new internal hackathon series. Participants spent a week building out a proof-of-concept project using Temporal to evaluate its use as our future workflow engine.`,
+      technologies: "Azure (AKS, DevOps, IAM, Key Vault, Pipelines), Python, PowerShell, ArgoCD, MS Graph, SendGrid, PlantUML, Golang"
     },
     {
       employer: "Clarity Software Solutions",
       position: "DevOps Engineer",
       time: "May 2019 - August 2021",
-      details: "Built data extraction pipeline from Datadog for business intelligence, managed container-based infrastructure, built language-agnostic toolchain with AWS Lambda, automated PHI scrubbing process (resulting in ~95% time savings or ~7.5 man-hours), automated code package preparation for daily builds (resulting in ~85% time savings or ~2.5 man-hours), and built SQL script verification tool.",
-      technologies: "NodeJS, Docker, Kubernetes, Datadog, MariaDB, Bash, GitHub"
+      details: `- Built out a modular and extendable pipeline to extract and format data from Datadog to aid our business intelligence team in developing automatic reports for national clients.
+        - Helped manage the container-based infrastructure, including acting as the point person when mitigating customer issues tracing back to code hosted on our Kubernetes cluster, shadowed our K8s leads when they worked on our cluster, aided in spinning down an old K8s cluster as we migrated to AWS, and helped developers containerize built processes.
+        - Started to build out a language agnostic toolchain with AWS Lambda that would allow developers to pick and choose pieces to create their own pipelines.
+        - Automated, with input from our ops and compliance teams, the process for scrubbing PHI from our lower environments, resulting in a time savings (so far) of ~95% or ~7.5 man-hours.
+        - Completed code, shell script, and SQL migrations to our lower environments as needed throughout the day & verified the same in daily change control meetings.
+        - Automated the process of preparing code packages for our daily builds, resulting in a time savings of ~85% or ~2.5 man-hours.
+        - Built a tool to parse and verify SQL scripts at various points in our change control process.
+        - Participated in discussions with senior engineers to both plan a digital transformation and discuss company-wide development standards that promote automation.`,
+      technologies: "NodeJS, Docker, Kubernetes, Datadog, MariaDB, Bash, GitHub, AWS (EC2, ECS, Lambda), SQL"
     },
     {
-      employer: "NewHaven.IO",
-      position: "President, Board of Directors",
-      time: "November 2018 - Present",
-      details: "Organizing networking events for the tech community, partnering with local tech organizations, and managing website development team.",
-      volunteer: true
-    },
-    {
-      employer: "Administrative Office of US Courts",
-      position: "Software Developer - Temporary Duty Assignment",
+      employer: "Administrative Office (AO) of the United States Courts",
+      position: "Software Developer - Temporary Duty Assignment (Shared Time)",
       time: "August 2018 - April 2019",
-      details: "Transitioned the Judicial Dashboard to work on an on-premise OpenShift/GlusterFS solution, cutting the deployment time down by 99.17%. Created, maintained, and provided enhancements to the codebase for a web application that automates the daily 'getting up to speed' work for District Judges across the country, saving roughly an hour's worth of time per judge every morning. Collaborated with a remote team of engineers in D.C. to test the scalability of OpenShift for use by other judiciary development teams.",
-      technologies: "OpenShift, Docker, Kubernetes"
+      details: `- Transitioned the Judicial Dashboard to work on an on-premise OpenShift/GlusterFS solution, cutting the deployment time down by 99.17%. This involved converting from a single server build out to a Docker based solution that allowed multiple developers to work concurrently on their local machines, followed by another conversion to Kubernetes to facilitate an efficient rollout to 34 courts in the next six months.
+        - Created, maintained, and provided enhancements to the codebase for a web application that automates the daily "getting up to speed" work for District Judges across the country, saving roughly an hour's worth of time per judge every morning.
+        - Collaborated with a remote team of engineers in D.C. to test the scalability of OpenShift for use by other judiciary development teams. This platform is now in the process of being elevated to being a national resource.
+        - Communicated with the national IT Security Office to scan images and engineer solutions to remediate findings.
+        - Interfaced with District Judges and users in the pilot courts testing the Judicial Dashboard to better understand user needs.
+        - Coordinated with cross-functional stakeholders in the AO to align all teams in a common strategic direction.`,
+      technologies: "OpenShift, Docker, Kubernetes, GlusterFS, Adobe ColdFusion, IBM Informix, Linux"
     },
     {
       employer: "United States District Court, District of Connecticut",
-      position: "Programmer",
+      position: "Programmer (Full Time)",
       time: "March 2017 - April 2019",
-      details: "Transitioned legacy applications to containerized architectures, modernized technology stack, implemented iPad jury information gathering system (92.5% process reduction), and developed touchscreen jury sign-in kiosk (85% cost reduction).",
-      technologies: "Docker, Vue.js, Node, Webpack, Ruby on Rails"
+      details: `- Transitioned in-house legacy applications to container based architectures with Docker for easier development and deployment. The ability to develop more quickly lead to a partnership with the Case Management Solutions Office in D.C., the hiring of part time developers, and a speedier rollout of the Judicial Dashboard product.
+        - Experimented with modern web technologies like Vue.js, Node, and Webpack to lay the groundwork of modernizing the tech stack of the Judicial Dashboard project in order to better source talent for a nationwide rollout.
+        - Communicated with developers across the judiciary about emerging technologies that could overhaul the core applications used by districts across the country. That combined advocacy led to a container focused overhaul of the organization's core product offerings and a judiciary-wide OpenShift hosting environment that the District of Connecticut is currently piloting.
+        - Implemented an iPad fleet and MachForm solution to shorten the process of gathering information from potential jurors, normalizing the data, and getting it into the hands of attorneys in high profile cases, by 92.5%.
+        - Developed a touchscreen jury sign in kiosk to undercut the cost of Xerox's proposed product, to be used in courthouses nationwide, by ~85%.
+        - Coordinated with the district's Security Officer to keep various web servers patched and secure.`,
+      technologies: "Adobe ColdFusion, Docker, Vue.js, Node, Webpack, MachForm, CSS, Linux, Docker, OpenShift"
     },
     {
       employer: "LearnToProgram.TV",
       position: "Developer in Residence / Instructor",
       time: "June 2017 - August 2018",
-      details: "Kept up with the bleeding edge of web technology to help set technical direction for LTP's courses and library. Developed an eLearning course on 'Intro to Server Administration', wrote magazine article 'The Future Is Docker', and instructed in the Framework Web Development Bootcamp.",
-      technologies: "JavaScript, Node.js, Ruby on Rails, Docker"
+      details: `- Kept up with the bleeding edge of the web technology horizon to help set technical direction for LTP's courses and library.
+        - Developed an eLearning course titled "Intro to Server Administration" that was distributed across multiple channels (including Udemy, Packt, and Safari).
+        - Wrote an article/workshop for the LearnToProgram.TV Magazine titled "The Future Is Docker".
+        - Instructed and mentored students in the Framework Web Development Bootcamp, both in-person and online.`,
+      technologies: "JavaScript, Node.js, Ruby on Rails, Docker, CSS",
+      resource_url_1: "https://www.magloft.com/app/learntoprogram/#/reader/12706/364883",
+      resource_title_1: "Magazine Article",
+      resource_url_2: "https://www.udemy.com/course/introduction-to-server-administration/",
+      resource_title_2: "Udemy Course"
     },
     {
       employer: "United States District Court, District of Connecticut",
-      position: "Programmer/Analyst",
+      position: "Programmer / Analyst",
       time: "May 2015 - March 2017",
-      details: "Created full stack LAMP and Ruby on Rails web applications to automate workflows for HR and Operations. Communications involved in on and off boarding employees was cut by over 40% due to streamlining the process by which system access privileges are requisitioned and assigned. Managed Red Hat servers running IBM Informix and US District Court CM/ECF instances and prepared for district's early adopter NextGen CM/ECF upgrade. Crafted complex, multi-table queries to generate reports that allowed Magistrate and District Judges on the CM/ECF Committee to decide which nature of suit case types needed to be optimized to abide by the Speedy Trial Clause.",
-      technologies: "PHP, Ruby on Rails, JavaScript, IBM Informix, Red Hat"
+      details: `- Created full stack LAMP and Ruby on Rails web applications to automate workflows for HR and Operations. Communications involved in on and off boarding employees was cut by over 40% due to streamlining the process by which system access privileges are requisitioned and assigned.
+        - Managed Red Hat servers running IBM Informix and US District Court CM/ECF (our docketing application) instances and prepared for our district's early adopter NextGen CM/ECF upgrade.
+        - Crafted complex, multi table queries to generate reports that allowed Magistrate and District Judges on the CM/ECF Committee to decide which nature of suit case types needed to be optimized to abide by the Speedy Trial Clause.`,
+      technologies: "PHP, Ruby on Rails, JavaScript, IBM Informix, RHEL, Linux, Apache, SQL"
     }
   ],
   projects: [
     {
+      name: "Jane MCP Server",
+      year: "2025",
+      description: "Makes team and project documentation AI-searchable via Claude. SQLite-powered search (migrating to AWS KBs), organizing stdlib/spec docs for LLM consumption. Works with MCP-compatible clients.",
+      technologies: "Node, TypeScript",
+      github: "https://github.com/Quinncuatro/jane-mcp-server"
+    },
+    {
+      name: "Henry Needs Coffee",
+      year: "2025",
+      description: "My personal website, that you're reading right now. Migrated to Astro from the original Gatsby build.",
+      technologies: "Astro, CSS, JavaScript, Netlify",
+      github: "https://github.com/Quinncuatro/HenryNeedsCoffee-Astro"
+    },
+    {
       name: "Henry Gives Coffee",
       year: "2021",
-      description: "Web project rewarding creative folks for their work with a cup of coffee each month. Features a blog for longer-form posts and portfolio showcase for monthly winners.",
+      description: "Web project rewarding creative folks for their contributions towards a more rad internet with a cup of coffee each month. Features a blog for longer-form posts and portfolio showcase for monthly winners.",
       technologies: "GatsbyJS, NodeJS, GraphQL, Netlify",
       github: "https://github.com/quinncuatro/henrygivescoffee"
+    },{
+      name: "Tech Enthusiast Scholarship",
+      year: "2020",
+      description: "A scholarship that awards $500 to two high school seniors pursuing computer science and honors some teachers who supported my DevOps path and help self-motivated students tinker and learn beyond the prescribed curriculum.",
+      technologies: "CSS, JavaScript",
+      github: "https://github.com/Quinncuatro/tech-enthusiast-scholarship"
     },
     {
       name: "New Haven Relief Resources",
       year: "2020",
       description: "Web application providing COVID-19 aid information for New Haven residents. Built during the pandemic to help connect people with resources for food, housing assistance, unemployment benefits, and other essential services.",
       technologies: "JavaScript, React, GatsbyJS, AirTable, Netlify",
-      github: "https://github.com/quinncuatro/newhavenreliefresources"
-    },
-    {
-      name: "DEVC Webpack Playground",
-      year: "2018",
-      description: "Containerized development environment experiment for mixing modern frontend tools with legacy codebases. Created to help modernize development workflows for legacy applications.",
-      technologies: "Vue.js, ColdFusion, Docker, Node, Webpack, MySQL",
-      github: "https://github.com/quinncuatro/devc-webpack"
-    },
-    {
-      name: "SLAter",
-      year: "2018",
-      description: "Raspberry Pi ticket monitoring system that tracks SLA compliance for IT service tickets. Built to provide visibility into support request timelines and team performance.",
-      technologies: "JavaScript, Node, MySQL",
-      github: "https://github.com/quinncuatro/slater"
-    },
-    {
-      name: "US Webtranet",
-      year: "2017",
-      description: "Containerized intranet framework for federal agencies that allows non-technical staff to contribute content through a simple interface. Designed to improve internal communications and knowledge sharing.",
-      technologies: "Ruby, Rails, SQLite, Docker",
-      github: "https://github.com/quinncuatro/us-webtranet"
-    },
-    {
-      name: "Digital Signage",
-      year: "2016",
-      description: "Custom digital signage solution for the US District Court using Raspberry Pi devices and web technologies, replacing expensive proprietary systems. This was also used to help cure a coworker's gout!",
-      technologies: "JavaScript, HTML5, Raspberry Pi",
-      github: "https://github.com/quinncuatro/DigitalSignage"
+      github: "https://github.com/Quinncuatro/service-relief-new-haven"
     }
   ],
   education: [
     {
-      degree: "Bachelor of Science",
+      degree: "B.S.",
       field: "Computer Networking and Information Security",
       specialization: "Cyber Security",
       school: "Champlain College",
       year: "2015",
       achievements: [
         "President of Champlain College Cycling Club",
+        "Resident Assistant 2012-2013",
         "National Center of Academic Excellence in Information Assurance Education by the National Security Agency and the Department of Homeland Security"
       ]
     }
@@ -127,23 +155,43 @@ export const resumeData = {
   commandPrompt="whoami"
   typingSpeed={10}>
       <h1>Henry Quinn IV</h1>
-      <h2>Automation Engineer</h2>
+      <h2>Senior DevOps Engineer</h2>
 
       <h3>Work Experience:</h3>
       <div class="resume-section">
         {resumeData.jobs.map((job) => (
           <div class="job-item">
             <div class="job-header">
-              <h4>{job.position}</h4>
+              <h4>{job.employer}</h4>
               <span class="job-time">{job.time}</span>
             </div>
-            <div class="job-employer">{job.employer}</div>
-            <p class="job-details">{job.details}</p>
-            {job.technologies && (
-              <div class="job-tech">Technologies: {job.technologies}</div>
+            <div class="job-position">{job.position}</div>
+            {job.details && job.details.trim() !== "" && (
+              <ul class="job-details">
+                {job.details.split("\n").filter(line => line.trim() !== "").map((line) => (
+                  <li>{line.trim().replace(/^- /, "")}</li>
+                ))}
+              </ul>
             )}
-            {job.volunteer && (
-              <div class="job-volunteer">Volunteer Position</div>
+            {job.technologies && (
+              <div class="job-tech">Technologies: {job.technologies.split(/,(?![^(]*\))/).map(t => t.trim()).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).join(', ')}</div>
+            )}
+            {(job.volunteer || job.resource_url_1 || job.resource_url_2) && (
+              <div class="job-resources">
+                {job.volunteer && (
+                  <span class="job-volunteer">Volunteer Position</span>
+                )}
+                {job.resource_url_1 && (
+                  <a href={job.resource_url_1} target="_blank" rel="noopener noreferrer" class="resource-link">
+                    {job.resource_title_1}
+                  </a>
+                )}
+                {job.resource_url_2 && (
+                  <a href={job.resource_url_2} target="_blank" rel="noopener noreferrer" class="resource-link">
+                    {job.resource_title_2}
+                  </a>
+                )}
+              </div>
             )}
           </div>
         ))}
@@ -191,7 +239,6 @@ export const resumeData = {
             {edu.specialization && <div class="education-spec">Specialization: {edu.specialization}</div>}
             {edu.achievements && edu.achievements.length > 0 && (
               <div class="achievements">
-                <h5>Achievements:</h5>
                 <ul>
                   {edu.achievements.map((achievement) => (
                     <li>{achievement}</li>
@@ -286,10 +333,9 @@ export const resumeData = {
     display: inline-block;
     background-color: #4A8522;
     color: white;
-    padding: 2px 6px;
+    padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.8rem;
-    margin-top: 0.5rem;
   }
 
   .education-spec {
