@@ -161,7 +161,7 @@ img {
   max-width: 800px;
   height: auto;
   min-height: 85vh;
-  margin: 5vh auto 0;
+  margin: 5vh auto;
   border-radius: var(--border-radius-lg);
   position: relative;
   box-shadow: var(--shadow-terminal);
@@ -210,6 +210,9 @@ img {
   top: 0;
   bottom: 0;
   overflow: auto;
+  min-height: calc(85vh - 30px); /* Ensure content fills terminal minus header height */
+  display: flex;
+  flex-direction: column;
 }
 
 .login-prompt {
@@ -219,7 +222,7 @@ img {
 }
 
 .menu-bar {
-  margin: var(--space-lg) 0;
+  margin: var(--space-md) 0; /* Reduced from lg (1.5rem) to md (1rem) for tighter vertical rhythm */
   padding: var(--space-md) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -354,6 +357,12 @@ table th {
 }
 
 /* Responsive adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .terminal-window {
+    margin: 3vh auto;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 15px;
@@ -379,7 +388,7 @@ table th {
   }
 
   .terminal-window {
-    margin: var(--space-sm) auto;
+    margin: 2vh auto;
     min-height: 85vh;
   }
 }

@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 // In a full implementation, this data would come from a content collection
 // For now, we'll use data from the original site to demonstrate
 const talksData = [
@@ -35,7 +35,7 @@ const talksData = [
     conference: "DevOpsDays Hartford 2019",
     location: "Hartford, CT",
     date: "October 2019",
-    video: "https://youtu.be/FbEm8wF"
+    video: "https://youtu.be/FbEm8wF9CKM?t=307"
   },
   {
     talk: "Intro to Docker",
@@ -108,8 +108,9 @@ const podcastsData = [
 ];
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Talks & Podcasts"
+  pageType="main"
   activeNav="talks-and-pods"
   commandPrompt="cat talks_and_podcasts.md"
   typingSpeed={8}>
@@ -126,16 +127,16 @@ const podcastsData = [
           <p><strong>{talk.conference}</strong> — {talk.location} — {talk.date}</p>
           <div class="talk-links">
             {talk.website && (
-              <a href={talk.website} target="_blank" rel="noopener noreferrer" class="talk-link">[ Website ]</a>
+              <a href={talk.website} target="_blank" rel="noopener noreferrer" class="talk-link">Website</a>
             )}
             {talk.slides && (
-              <a href={talk.slides} target="_blank" rel="noopener noreferrer" class="talk-link">[ Slides ]</a>
+              <a href={talk.slides} target="_blank" rel="noopener noreferrer" class="talk-link">Slides</a>
             )}
             {talk.video && (
-              <a href={talk.video} target="_blank" rel="noopener noreferrer" class="talk-link">[ Video ]</a>
+              <a href={talk.video} target="_blank" rel="noopener noreferrer" class="talk-link">Video</a>
             )}
             {talk.article && (
-              <a href={talk.article} target="_blank" rel="noopener noreferrer" class="talk-link">[ Article ]</a>
+              <a href={talk.article} target="_blank" rel="noopener noreferrer" class="talk-link">Article</a>
             )}
           </div>
           {index < talksData.length - 1 && <hr />}
@@ -156,7 +157,7 @@ const podcastsData = [
           <p><strong>{podcast.show}</strong> — {podcast.date}</p>
           <p>{podcast.description}</p>
           <div class="podcast-links">
-            <a href={podcast.link} target="_blank" rel="noopener noreferrer" class="podcast-link">[ Listen ]</a>
+            <a href={podcast.link} target="_blank" rel="noopener noreferrer" class="podcast-link">Listen</a>
           </div>
           {index < podcastsData.length - 1 && <hr />}
         </li>
@@ -171,7 +172,7 @@ const podcastsData = [
     <h2>Interested in having me speak?</h2>
     <p>I'd love to speak at your conference, meetup, or appear on your podcast! Please reach out via my <a href="/contact">contact page</a>.</p>
   </section>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 
 <style>
   h1, h2, h3 {
@@ -223,12 +224,12 @@ const podcastsData = [
   .talk-link,
   .podcast-link {
     display: inline-block;
-    padding: 0.3rem 0.8rem;
+    padding: 4px 8px;
     background-color: var(--accent-color);
     color: white;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: background-color 0.3s;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
@@ -236,7 +237,7 @@ const podcastsData = [
 
   .talk-link:hover,
   .podcast-link:hover {
-    background-color: var(--accent-color-dark);
+    background-color: var(--secondary-color);
     text-decoration: none;
   }
 

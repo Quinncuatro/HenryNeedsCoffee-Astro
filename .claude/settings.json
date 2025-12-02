@@ -1,0 +1,31 @@
+{
+  "hooks": {
+    "post_file_edit": "./scripts/update-docs.sh",
+    "post_commit": "./scripts/sync-specs.sh"
+  },
+  "automation": {
+    "auto_update_docs": true,
+    "spec_sync_enabled": true,
+    "documentation_paths": [
+      "CLAUDE.md",
+      "README.md"
+    ],
+    "spec_documents": [
+      "spec://Henry-Needs-Coffee/architecture.md",
+      "spec://Henry-Needs-Coffee/testing-strategy.md",
+      "spec://Henry-Needs-Coffee/code-style-standards.md",
+      "spec://Henry-Needs-Coffee/content-management.md",
+      "spec://Henry-Needs-Coffee/deployment-devops.md",
+      "spec://Henry-Needs-Coffee/ui-ux-guidelines.md",
+      "spec://Henry-Needs-Coffee/performance.md",
+      "spec://Henry-Needs-Coffee/security.md",
+      "spec://Henry-Needs-Coffee/maintenance.md",
+      "spec://Henry-Needs-Coffee/development-workflow.md"
+    ]
+  },
+  "preferences": {
+    "auto_format": false,
+    "auto_lint": false,
+    "terminal_notifications": true
+  }
+}

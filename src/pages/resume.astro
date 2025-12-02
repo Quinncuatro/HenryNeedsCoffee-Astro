@@ -1,5 +1,5 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 // This would typically come from a content collection in Astro
 // For now, let's use detailed resume data from henryneeds.coffee
 export const resumeData = {
@@ -8,7 +8,7 @@ export const resumeData = {
       employer: "TED Conferences",
       position: "Senior DevOps Engineer",
       time: "May 2024 - Present",
-      details: `- Stuff`,
+      details: `- TBA`,
       technologies: "AWS (Bedrock, CloudWatch, EC2, ECS, IAM, Lambda, RDS, Route53, S3, SSM), New Relic, GitHub (Actions, Repos), Fastly, Varnish, Docker, Terraform, Ansible, Bash, Ruby on Rails, Next.js"
     },
     {
@@ -149,8 +149,9 @@ export const resumeData = {
 };
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Resume"
+  pageType="main"
   activeNav="resume"
   commandPrompt="whoami"
   typingSpeed={10}>
@@ -249,7 +250,7 @@ export const resumeData = {
           </div>
         ))}
       </div>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 <style>
   h1, h2, h3, h4 {
     margin-top: 0;

@@ -1,12 +1,12 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 import { getCollection } from 'astro:content';
 
 import { resumeData as resumeImport } from './resume.astro';
 
 const featuredProjects = [...resumeImport.projects]
   .sort((a, b) => parseInt(b.year) - parseInt(a.year))
-  .slice(0, 4)
+  .slice(0, 3)
   .map(project => ({
     title: project.name,
     description: project.description,
@@ -47,8 +47,9 @@ function createExcerpt(text, maxLength = 150) {
 }
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Home"
+  pageType="main"
   activeNav="home"
   commandPrompt="whoami"
   typingSpeed={10}>
@@ -79,7 +80,7 @@ function createExcerpt(text, maxLength = 150) {
         </article>
     ))}
     </div>
-    <p class="more-link">See more on my <a href="/blog" target="_blank" rel="noopener noreferrer">blog</a> or explore my <a href="/digital-garden" target="_blank" rel="noopener noreferrer">Digital Garden</a> for works-in-progress.</p>
+    <p class="more-link">See more on my <a href="/blog" target="_blank" rel="noopener noreferrer">blog</a> or explore my <a href="/digital-garden" target="_blank" rel="noopener noreferrer">digital garden</a> for works-in-progress.</p>
   </div>
 
   <div class="featured-section">
@@ -103,11 +104,11 @@ function createExcerpt(text, maxLength = 150) {
     <h2>Get In Touch</h2>
     <p>Interested in collaborating or just want to say hi? Visit my <a href="/contact">contact page</a> to reach out!</p>
   </div>
-</TerminalLayout>
+</UnifiedTerminalLayout>
 
 <style>
   .intro-section {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .intro-section h1 {
@@ -133,7 +134,7 @@ function createExcerpt(text, maxLength = 150) {
   .contact-teaser {
     margin-bottom: 3rem;
     background-color: var(--card-bg);
-    padding: 1.5rem;
+    padding: 0rem 1.5rem 1rem;
     border-radius: 8px;
     border: 1px solid #444;
   }
@@ -198,7 +199,6 @@ function createExcerpt(text, maxLength = 150) {
     }
 
   .featured-project-item {
-    margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #444;
   }
@@ -268,7 +268,7 @@ function createExcerpt(text, maxLength = 150) {
     }
 
   .more-link {
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-weight: bold;
     }
 

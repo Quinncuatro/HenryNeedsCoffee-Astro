@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import UnifiedTerminalLayout from '../../layouts/UnifiedTerminalLayout.astro';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -14,11 +14,13 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BlogPostLayout 
-  title={entry.data.title} 
+<UnifiedTerminalLayout 
+  title={entry.data.title}
+  pageType="blog"
+  activeNav="blog"
   date={entry.data.date} 
   category={entry.data.category}
-  desc={entry.data.desc}
+  description={entry.data.desc}
 >
   <Content />
-</BlogPostLayout>
+</UnifiedTerminalLayout>

@@ -1,11 +1,12 @@
 ---
-import TerminalLayout from '../layouts/TerminalLayout.astro';
+import UnifiedTerminalLayout from '../layouts/UnifiedTerminalLayout.astro';
 // Obfuscate email to avoid scrapers
 const myEmail = "HenryQuinnIV" + String.fromCharCode(64) + "gmail.com";
 ---
 
-<TerminalLayout
+<UnifiedTerminalLayout
   title="Contact"
+  pageType="main"
   activeNav="contact"
   commandPrompt="sendmail"
   typingSpeed={10}>
@@ -14,12 +15,12 @@ const myEmail = "HenryQuinnIV" + String.fromCharCode(64) + "gmail.com";
   <hr/>
 
   <h2>Email</h2>
-  <a href={`mailto:${myEmail}`} class="contact-link">[ Email Me ]</a>
+  <a href={`mailto:${myEmail}`} class="contact-link">Email Me</a>
 
   <h2>Social Media</h2>
   <div class="social-links">
-    <a href="https://github.com/quinncuatro" target="_blank" rel="noopener noreferrer" class="contact-link">[ GitHub ]</a>
-    <a href="https://ko-fi.com/henryquinn" target="_blank" rel="noopener noreferrer" class="contact-link">[ Ko-fi ]</a>
+    <a href="https://github.com/quinncuatro" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub</a>
+    <a href="https://ko-fi.com/henrygivescoffee" target="_blank" rel="noopener noreferrer" class="contact-link">Ko-fi</a>
   </div>
 
   <h2>Other Information</h2>
@@ -36,7 +37,7 @@ const myEmail = "HenryQuinnIV" + String.fromCharCode(64) + "gmail.com";
     <li>Help write a book</li>
   </ul>
 
-</TerminalLayout>
+</UnifiedTerminalLayout>
 
 <style>
   h1, h2 {
@@ -69,19 +70,19 @@ const myEmail = "HenryQuinnIV" + String.fromCharCode(64) + "gmail.com";
   .contact-link {
     display: inline-block;
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 4px 8px;
     background-color: var(--accent-color);
     color: white;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: background-color 0.3s;
     margin-right: 10px;
     margin-bottom: 10px;
   }
 
   .contact-link:hover {
-    background-color: var(--accent-color-dark);
+    background-color: var(--secondary-color);
     text-decoration: none;
   }
 
