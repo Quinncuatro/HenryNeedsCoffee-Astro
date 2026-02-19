@@ -8,10 +8,20 @@
   targetPort = 4321
   port = 8888
 
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/digital-garden"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/digital-garden/*"
+  to = "/"
+  status = 301
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  NODE_VERSION = "18"
