@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeNav?: 'home' | 'blog' | 'digital-garden' | 'resume' | 'talks-and-pods' | 'contact';
+  activeNav?: 'home' | 'blog' | 'resume' | 'talks-and-pods' | 'contact';
 }
 
 const { activeNav } = Astro.props;
@@ -9,7 +9,6 @@ const { activeNav } = Astro.props;
 <nav class="menu-bar">
   <a href="/" class={activeNav === 'home' ? 'active' : ''}>[ Henry Quinn ]</a>
   <a href="/blog" class={activeNav === 'blog' ? 'active' : ''}>[ Blog ]</a>
-  <a href="/digital-garden" class={activeNav === 'digital-garden' ? 'active' : ''}>[ Digital Garden ]</a>
   <a href="/resume" class={activeNav === 'resume' ? 'active' : ''}>[ Resume ]</a>
   <a href="/talks-and-pods" class={activeNav === 'talks-and-pods' ? 'active' : ''}>[ Talks & Pods ]</a>
   <a href="/contact" class={activeNav === 'contact' ? 'active' : ''}>[ Contact ]</a>
