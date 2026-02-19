@@ -15,11 +15,13 @@
   from = "/digital-garden"
   to = "/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/digital-garden/*"
   to = "/"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/*"
