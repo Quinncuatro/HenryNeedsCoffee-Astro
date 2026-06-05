@@ -8,8 +8,21 @@ export const resumeData = {
       employer: "TED Conferences",
       position: "Senior DevOps Engineer",
       time: "May 2024 - Present",
-      details: `- TBA`,
-      technologies: "AWS (Bedrock, CloudWatch, EC2, ECS, IAM, Lambda, RDS, Route53, S3, SSM), New Relic, GitHub (Actions, Repos), Fastly, Varnish, Docker, Terraform, Ansible, Bash, Ruby on Rails, Next.js"
+      details: `- Managing cloud infrastructure for a global media platform whose ideas were watched and heard 1.71 billion times across 248 countries and territories in 2025 alone, by 195 million monthly followers. 
+- Leading a multi-year migration of 12+ years of bare-metal EC2 "pet" infrastructure to AWS ECS: establishing containerization patterns, reusable CI/CD pipelines, ALB traffic-splitting for canary releases, and multi-AZ auto-scaling configurations now adopted across teams. 
+- Serving as the sole engineer responsible for media ingest operations at TED's flagship conferences (TEDNext 2025, TED 2026): managing the pipeline from broadcast truck through cloud sync to our remote editing teams, administering the backstage LAN and NAS systems for our photography and production teams. At TED 2026, resolved on-site misconfigurations affecting the ingest pipeline while simultaneously providing real-time incident response for production systems serving a global live audience. 
+- Developing DevOps Research Assistant (DORA) to bring LLM and RAG tooling into our DevOps workflows, and presented this work at meetups in New Haven & Boston.
+- Designed Event Management System (EMS) scaling to handle conference-peak loads across three consecutive events: coordinating pre-conference database and ECS scale-ups, circuit-breaker rolling deployments, followed by post-event teardown and cost recovery each cycle. 
+- Built the cloud infrastructure for TED Games from the ground up, designed to scale and survive launch day traffic. It's handled the launch of 6 new daily games without incident. 
+- Extended Fastly VCL rules for ted.com and tedx.com, including S3 backend routing, OS-detecting smart redirects, and CVE mitigation patches. 
+- Standardized Ansible inventory and Python interpreter configuration across the EC2 fleet as part of our ongoing evolution from pets to cattle. 
+- Built reusable Ansible automation for fleet-wide operations: SSH key rotations, and security endpoint rollouts across 100+ EC2 instances.
+- Verified TED Staff Link: https://www.ted.com/profiles/46919849`,
+      technologies: "Ansible, AWS (Bedrock, CloudWatch, EC2, ECS, IAM, Lambda, RDS, Route53, S3, SSM), Bash, Docker, Fastly, GitHub (Actions, Repos), New Relic, Next.JS, Ruby on Rails, Terraform",
+      resource_url_1: "https://ted.com",
+      resource_title_1: "TED Website",
+      resource_url_2: "https://www.ted.com/profiles/46919849",
+      resource_title_2: "TED Staff Profile"
     },
     {
       employer: "NewHaven.IO (Non-Profit)",
@@ -32,7 +45,9 @@ export const resumeData = {
         - Productionized and deployed an in-house solution to monitor and alert stakeholders about client secrets that are nearing their expiration dates.
         - Selected a C4 modeling framework for the company and created training materials: "Getting Started" documentation and an eLearning video series.
         - Planned and hosted the first event in a new internal hackathon series. Participants spent a week building out a proof-of-concept project using Temporal to evaluate its use as our future workflow engine.`,
-      technologies: "Azure (AKS, DevOps, IAM, Key Vault, Pipelines), Python, PowerShell, ArgoCD, MS Graph, SendGrid, PlantUML, Golang"
+      technologies: "Azure (AKS, DevOps, IAM, Key Vault, Pipelines), Python, PowerShell, ArgoCD, MS Graph, SendGrid, PlantUML, Golang",
+      resource_url_1: "https://www.acuitybrands.com",
+      resource_title_1: "Acuity Website"
     },
     {
       employer: "Clarity Software Solutions",
@@ -46,7 +61,9 @@ export const resumeData = {
         - Automated the process of preparing code packages for our daily builds, resulting in a time savings of ~85% or ~2.5 man-hours.
         - Built a tool to parse and verify SQL scripts at various points in our change control process.
         - Participated in discussions with senior engineers to both plan a digital transformation and discuss company-wide development standards that promote automation.`,
-      technologies: "NodeJS, Docker, Kubernetes, Datadog, MariaDB, Bash, GitHub, AWS (EC2, ECS, Lambda), SQL"
+      technologies: "NodeJS, Docker, Kubernetes, Datadog, MariaDB, Bash, GitHub, AWS (EC2, ECS, Lambda), SQL",
+      resource_url_1: "https://clarityssi.com",
+      resource_title_1: "Clarity Website"
     },
     {
       employer: "Administrative Office (AO) of the United States Courts",
@@ -58,7 +75,9 @@ export const resumeData = {
         - Communicated with the national IT Security Office to scan images and engineer solutions to remediate findings.
         - Interfaced with District Judges and users in the pilot courts testing the Judicial Dashboard to better understand user needs.
         - Coordinated with cross-functional stakeholders in the AO to align all teams in a common strategic direction.`,
-      technologies: "OpenShift, Docker, Kubernetes, GlusterFS, Adobe ColdFusion, IBM Informix, Linux"
+      technologies: "OpenShift, Docker, Kubernetes, GlusterFS, Adobe ColdFusion, IBM Informix, Linux",
+      resource_url_1: "https://www.uscourts.gov",
+      resource_title_1: "AO Website"
     },
     {
       employer: "United States District Court, District of Connecticut",
@@ -70,7 +89,9 @@ export const resumeData = {
         - Implemented an iPad fleet and MachForm solution to shorten the process of gathering information from potential jurors, normalizing the data, and getting it into the hands of attorneys in high profile cases, by 92.5%.
         - Developed a touchscreen jury sign in kiosk to undercut the cost of Xerox's proposed product, to be used in courthouses nationwide, by ~85%.
         - Coordinated with the district's Security Officer to keep various web servers patched and secure.`,
-      technologies: "Adobe ColdFusion, Docker, Vue.js, Node, Webpack, MachForm, CSS, Linux, Docker, OpenShift"
+      technologies: "Adobe ColdFusion, Docker, Vue.js, Node, Webpack, MachForm, CSS, Linux, Docker, OpenShift",
+      resource_url_1: "https://ctd.uscourts.gov",
+      resource_title_1: "District of CT Website"
     },
     {
       employer: "LearnToProgram.TV",
@@ -93,7 +114,9 @@ export const resumeData = {
       details: `- Created full stack LAMP and Ruby on Rails web applications to automate workflows for HR and Operations. Communications involved in on and off boarding employees was cut by over 40% due to streamlining the process by which system access privileges are requisitioned and assigned.
         - Managed Red Hat servers running IBM Informix and US District Court CM/ECF (our docketing application) instances and prepared for our district's early adopter NextGen CM/ECF upgrade.
         - Crafted complex, multi table queries to generate reports that allowed Magistrate and District Judges on the CM/ECF Committee to decide which nature of suit case types needed to be optimized to abide by the Speedy Trial Clause.`,
-      technologies: "PHP, Ruby on Rails, JavaScript, IBM Informix, RHEL, Linux, Apache, SQL"
+      technologies: "PHP, Ruby on Rails, JavaScript, IBM Informix, RHEL, Linux, Apache, SQL",
+      resource_url_1: "https://ctd.uscourts.gov",
+      resource_title_1: "District of CT Website"
     }
   ],
   projects: [
